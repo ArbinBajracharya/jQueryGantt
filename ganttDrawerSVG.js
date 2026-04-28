@@ -552,6 +552,9 @@ Ganttalendar.prototype.drawLink = function (from, to, type) {
       var from = group.data("from");
       var to = group.data("to");
 
+      console.log(from);
+      console.log(to);
+
       var rectFrom = buildRectFromTask(from);
       var rectTo = buildRectFromTask(to);
 

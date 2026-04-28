@@ -151,7 +151,8 @@ GanttMaster.prototype.init = function (workSpace) {
     self.fullScreen();
   }).bind("print.gantt", function () {
     self.print();
-
+  }).bind("openFullAdd.gantt", function () {
+    self.editor.openFullAdd(false);
 
   }).bind("zoomPlus.gantt", function () {
     self.gantt.zoomGantt(true);
@@ -1645,32 +1646,32 @@ GanttMaster.prototype.manageSaveRequired=function(ev, showSave) {
 
   var self=this;
   function checkChanges() {
-    var changes = false;
-    //there is somethin in the redo stack?
-    if (self.__undoStack.length > 0) {
-      var oldProject = JSON.parse(self.__undoStack[0]);
-      //si looppano i "nuovi" task
-      for (var i = 0; !changes && i < self.tasks.length; i++) {
-        var newTask = self.tasks[i];
-        //se è un task che c'erà già
-        if (!(""+newTask.id).startsWith("tmp_")) {
-          //si recupera il vecchio task
-          var oldTask;
-          for (var j = 0; j < oldProject.tasks.length; j++) {
-            if (oldProject.tasks[j].id == newTask.id) {
-              oldTask = oldProject.tasks[j];
-              break;
-            }
-          }
-          // chack only status or dateChanges
-          if (oldTask && (oldTask.status != newTask.status || oldTask.start != newTask.start || oldTask.end != newTask.end)) {
-            changes = true;
-            break;
-          }
-        }
-      }
-    }
-    $("#LOG_CHANGES_CONTAINER").css("display", changes ? "inline-block" : "none");
+    // var changes = false;
+    // //there is somethin in the redo stack?
+    // if (self.__undoStack.length > 0) {
+    //   var oldProject = JSON.parse(self.__undoStack[0]);
+    //   //si looppano i "nuovi" task
+    //   for (var i = 0; !changes && i < self.tasks.length; i++) {
+    //     var newTask = self.tasks[i];
+    //     //se è un task che c'erà già
+    //     if (!(""+newTask.id).startsWith("tmp_")) {
+    //       //si recupera il vecchio task
+    //       var oldTask;
+    //       for (var j = 0; j < oldProject.tasks.length; j++) {
+    //         if (oldProject.tasks[j].id == newTask.id) {
+    //           oldTask = oldProject.tasks[j];
+    //           break;
+    //         }
+    //       }
+    //       // chack only status or dateChanges
+    //       if (oldTask && (oldTask.status != newTask.status || oldTask.start != newTask.start || oldTask.end != newTask.end)) {
+    //         changes = true;
+    //         break;
+    //       }
+    //     }
+    //   }
+    // }
+    // $("#LOG_CHANGES_CONTAINER").css("display", changes ? "inline-block" : "none");
   }
 
 

@@ -626,88 +626,81 @@ GridEditor.prototype.openFullEditor = function (task, editOnlyAssig) {
     }).click();
 
     //save task
-    taskEditor.bind("saveFullEditor.gantt",function () {
-      //console.debug("saveFullEditor");
-      var task = self.master.getTask(taskId); // get task again because in case of rollback old task is lost
+    taskEditor.bind("saveFullEditor.gantt", function () {
 
-      self.master.beginTransaction();
-      task.name = taskEditor.find("#name").val();
-      task.description = taskEditor.find("#description").val();
-      task.code = taskEditor.find("#code").val();
-      task.progress = parseFloat(taskEditor.find("#progress").val());
-      //task.duration = parseInt(taskEditor.find("#duration").val()); //bicch rimosso perchè devono essere ricalcolata dalla start end, altrimenti sbaglia
-      task.startIsMilestone = taskEditor.find("#startIsMilestone").is(":checked");
-      task.endIsMilestone = taskEditor.find("#endIsMilestone").is(":checked");
+      var task = self.master.getTask(taskId);
 
-      task.type = taskEditor.find("#type_txt").val();
-      task.typeId = taskEditor.find("#type").val();
-      task.relevance = taskEditor.find("#relevance").val();
-      task.progressByWorklog= taskEditor.find("#progressByWorklog").is(":checked");
+      // Prepare clean payload (ONLY needed fields)
+      var payload = {
+        id: task.id,
+        title: taskEditor.find("#name").val(),
+        descript: taskEditor.find("#description").val(),
+        progress: taskEditor.find("#progress").val(),
+        duration: taskEditor.find("#duration").val(),
+        start: taskEditor.find("#start").val(),
+        end: taskEditor.find("#end").val()
+      };
 
-      //set assignments
-      var cnt=0;
-      taskEditor.find("tr[assId]").each(function () {
-        var trAss = $(this);
-        var assId = trAss.attr("assId");
-        var resId = trAss.find("[name=resourceId]").val();
-        var resName = trAss.find("[name=resourceId_txt]").val(); // from smartcombo text input part
-        var roleId = trAss.find("[name=roleId]").val();
-        var effort = millisFromString(trAss.find("[name=effort]").val(),true);
+      $.ajax({
+        url: "backend/crud/editTask.php",
+        type: "POST",
+        data: payload,
+        dataType: "json",
 
-        //check if the selected resource exists in ganttMaster.resources
-        var res= self.master.getOrCreateResource(resId,resName);
+        success: function (response) {
 
-        //if resource is not found nor created
-        if (!res)
-          return;
+          if (response.success) {
 
-        //check if an existing assig has been deleted and re-created with the same values
-        var found = false;
-        for (var i = 0; i < task.assigs.length; i++) {
-          var ass = task.assigs[i];
+            closeBlackPopup();
 
-          if (assId == ass.id) {
-            ass.effort = effort;
-            ass.roleId = roleId;
-            ass.resourceId = res.id;
-            ass.touched = true;
-            found = true;
-            break;
-
-          } else if (roleId == ass.roleId && res.id == ass.resourceId) {
-            ass.effort = effort;
-            ass.touched = true;
-            found = true;
-            break;
-
+            alert("Task updated successfully");
+            window.location.reload();
+          } else {
+            alert(response.message || "Update failed");
           }
-        }
+        },
 
-        if (!found && resId && roleId) { //insert
-          cnt++;
-          var ass = task.createAssignment("tmp_" + new Date().getTime()+"_"+cnt, resId, roleId, effort);
-          ass.touched = true;
+        error: function (xhr, status, error) {
+          console.log("AJAX Error:", error);
+          alert("Server error while updating task");
         }
-
       });
 
-      //remove untouched assigs
-      task.assigs = task.assigs.filter(function (ass) {
-        var ret = ass.touched;
-        delete ass.touched;
-        return ret;
+    });
+
+    taskEditor.bind("dltFullEditor.gantt", function () {
+
+      var task = self.master.getTask(taskId);
+
+      // Prepare clean payload (ONLY needed fields)
+      var payload = {
+        id: task.id
+      };
+
+      $.ajax({
+        url: "backend/crud/dltTask.php",
+        type: "POST",
+        data: payload,
+        dataType: "json",
+
+        success: function (response) {
+
+          if (response.success) {
+
+            closeBlackPopup();
+
+            alert("Task deleted successfully");
+            window.location.reload();
+          } else {
+            alert(response.message || "Delete failed");
+          }
+        },
+
+        error: function (xhr, status, error) {
+          console.log("AJAX Error:", error);
+          alert("Server error while updating task");
+        }
       });
-
-      //change dates
-      task.setPeriod(Date.parseString(taskEditor.find("#start").val()).getTime(), Date.parseString(taskEditor.find("#end").val()).getTime() + (3600000 * 22));
-
-      //change status
-      task.changeStatus(taskEditor.find("#status").val());
-
-      if (self.master.endTransaction()) {
-        taskEditor.find(":input").updateOldValue();
-        closeBlackPopup();
-      }
 
     });
   }
@@ -721,4 +714,76 @@ GridEditor.prototype.openFullEditor = function (task, editOnlyAssig) {
 
 
 
+};
+
+GridEditor.prototype.openFullAdd = function (task, editOnlyAssig) {
+  var self = this;
+
+  if (!self.master.permissions.canSeePopEdit)
+    return;
+
+  // Create only modal template
+  var taskEditor = $.JST.createFromTemplate(task, "TASK_ADD");
+
+  //bind dateField on dates, duration
+  taskEditor.find("#addstart,#addend,#addduration").click(function () {
+    var input = $(this);
+    if (input.is("[entrytype=DATE]")) {
+      input.dateField({
+        inputField: input,
+        minDate:self.minAllowedDate,
+        maxDate:self.maxAllowedDate,
+        callback:   function (d) {$(this).blur();}
+      });
+    }
+  }).blur(function () {
+    var inp = $(this);
+    if (inp.validateField()) {
+      resynchDates(inp, taskEditor.find("[name=start]"), taskEditor.find("[name=startIsMilestone]"), taskEditor.find("[name=duration]"), taskEditor.find("[name=end]"), taskEditor.find("[name=endIsMilestone]"));
+      //workload computation
+      if (typeof(workloadDatesChanged)=="function")
+        workloadDatesChanged();
+    }
+  });
+
+  //save task
+  taskEditor.bind("addFullEditor.gantt", function () {
+
+    var payload = {
+      title: taskEditor.find("#name").val(),
+      descript: taskEditor.find("#description").val(),
+      progress: taskEditor.find("#progress").val(),
+      duration: taskEditor.find("#addduration").val(),
+      start: taskEditor.find("#addstart").val(),
+      end: taskEditor.find("#addend").val()
+    };
+
+    $.ajax({
+      url: "backend/crud/addTask.php",
+      type: "POST",
+      data: payload,
+      dataType: "json",
+
+      success: function (response) {
+
+        if (response.success) {
+
+          closeBlackPopup();
+
+          alert("Task added successfully");
+          window.location.reload();
+        } else {
+          alert(response.message || "Update failed");
+        }
+      },
+
+      error: function (xhr, status, error) {
+        console.log("AJAX Error:", error);
+        alert("Server error while updating task");
+      }
+    });
+  });
+
+  // Open popup modal only
+  createModalPopup(800, 450).append(taskEditor);
 };
