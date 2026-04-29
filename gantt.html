@@ -7,6 +7,10 @@
 
   <link rel=stylesheet href="platform.css" type="text/css">
   <!-- <link rel=stylesheet href="libs/jquery/dateField/jquery.dateField.css" type="text/css"> -->
+   <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
   <link rel=stylesheet href="gantt.css" type="text/css">
   <link rel=stylesheet href="ganttPrint.css" type="text/css" media="print">
@@ -46,6 +50,29 @@
   <!--<script type="text/javascript" src="ganttTestSuite.js"></script>-->
 </head>
 <body style="background-color: #fff;">
+
+      <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <pattern id="progressStripes"
+               patternUnits="userSpaceOnUse"
+               width="12"
+               height="12"
+               patternTransform="rotate(45)">
+
+        <rect width="12" height="12" fill="#4CAF50"></rect>
+        <rect width="6" height="12" fill="white" opacity="0.25"></rect>
+
+        <animateTransform
+          attributeName="patternTransform"
+          type="translate"
+          from="0 0"
+          to="12 0"
+          dur="0.6s"
+          repeatCount="indefinite"/>
+      </pattern>
+    </defs>
+  </svg>
+
 
 <div id="workSpace" style="padding:0px; overflow-y:auto; overflow-x:hidden;border:1px solid #e5e5e5;position:relative;margin:0 5px"></div>
 
@@ -620,12 +647,11 @@ function showBaselineInfo (event,element){
     <thead>
     <tr style="height:40px">
       <th class="gdfColHeader gdfResizable" style="width:35px;">ID</th>
-      <th class="gdfColHeader gdfResizable" style="width:20px;">Status</th>
       <th class="gdfColHeader gdfResizable" style="width:300px;">Name</th>
-      <th class="gdfColHeader gdfResizable" style="width:80px;">Start</th>
-      <th class="gdfColHeader gdfResizable" style="width:80px;">End</th>
-      <th class="gdfColHeader gdfResizable" style="width:50px;">Dur</th>
-      <th class="gdfColHeader gdfResizable" style="width:20px;">%</th>
+      <th class="gdfColHeader gdfResizable" style="width:80px;">Start Date</th>
+      <th class="gdfColHeader gdfResizable" style="width:80px;">End Date</th>
+      <th class="gdfColHeader gdfResizable" style="width:50px;">Duration</th>
+      <th class="gdfColHeader gdfResizable" style="width:20px;">Progress %</th>
     </tr>
     </thead>
   </table>
@@ -634,10 +660,14 @@ function showBaselineInfo (event,element){
 <div class="__template__" type="TASKROW"><!--
   <tr id="tid_(#=obj.id#)" taskId="(#=obj.id#)" class="taskEditRow (#=obj.isParent()?'isParent':''#) (#=obj.collapsed?'collapsed':''#)" level="(#=level#)">
     <th class="gdfCell edit" align="middle" style="cursor:pointer;"><span class="taskRowIndex">(#=obj.getRow()+1#)</span> </th>
-    <td class="gdfCell noClip" align="center"><div class="taskStatus cvcColorSquare" status="(#=obj.status#)"></div></td>
     <td class="gdfCell indentCell" style="padding-left:(#=obj.level*10+18#)px;">
-      <div class="exp-controller" align="center"></div>
-      <input type="text" name="name" value="(#=obj.name#)" placeholder="name">
+       <div class="nameWithStatus">
+    <div class="taskStatus cvcColorSquare" status="(#=obj.status#)"></div>
+    <div class=controller-text>
+    <div class="exp-controller" align="center"></div>
+    <input type="text" name="name" value="(#=obj.name#)" placeholder="name">
+    </div>
+  </div>
     </td>
     <td class="gdfCell"><input type="text" name="start" value="" class="date"></td>
     <td class="gdfCell"><input type="text" name="end" value="" class="date"></td>

@@ -1,8 +1,35 @@
 
 body{
-  /*overflow: hidden;*/
+  overflow: hidden;
+  font-family: 'Poppins', Arial, sans-serif;
+   background: #f6f8fc;
+}
+.gdfCell,
+.gdfTable td,
+.gdfTable th,
+.taskEditRow input,
+.ganttButtonBar,
+button {
+  font-family: 'Poppins', Arial, sans-serif;
 }
 
+button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #4338ca;
+}
+/* #workSpace {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: #fff;
+} */
 .TWGanttWorkSpace.ganttFullScreen{
   position: fixed;
   top:0;
@@ -23,11 +50,13 @@ body{
 }
 
 .gdfTable td, .gdfTable th {
-  vertical-align: middle;
+  /* vertical-align: middle; */
+  text-align: left;
   overflow: hidden;
   text-overflow: clip;
   white-space: nowrap;
-  font-size: 14px
+  font-size: 14px;
+  padding: 10px;
 }
 
 .gdfCell {
@@ -43,11 +72,17 @@ body{
 }
 
 .gdfColHeader {
+  background: #eef2ff;
+  color: #333;
+  font-weight: 500;
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  /* padding: 15px;
   min-width: 5px;
   height: 30px;
-  background-color: #eee;
-  border-bottom:2px solid #bbb;
-  border-right: 1px solid #bbb;
+  background-color: #F7F7FF;
+  border-bottom:1px solid #dedede; */
+  /* border-right: 1px solid #bbb; */
 }
 
 .gdfColHeader:last-of-type {
@@ -237,7 +272,7 @@ body{
   position:relative;
   z-index: 2;
   /*background-color: #fff;*/
-  border-bottom: 1px solid #959595;
+  /* border-bottom: 1px solid #959595; */
   padding: 5px 0 5px 10px;
 }
 
@@ -328,11 +363,16 @@ body{
 }
 
 .taskBoxDiv .layout {
-  height:100%;
+  /* height:100%;
   color:#DB2727;
   border-radius:2px;
-  background: #eee; /* Old browsers */
-  border:1px solid #bbb;
+  background: #eee; 
+  border:1px solid #bbb; */
+
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border: none;
+  border-radius: 6px;
+
 }
 
 .taskBoxDiv .taskStatus {
@@ -365,6 +405,9 @@ body{
 .taskBoxDiv .taskProgress{
   height:5px;
   position:absolute;
+  background: #22c55e;
+  height: 6px;
+  border-radius: 4px;
 }
 
 .taskBoxDiv .layout.extDep{
@@ -464,21 +507,33 @@ body{
   border:0;
   cursor: pointer;
 }
-.taskStatus[status=STATUS_ACTIVE]{
-  background-color: #3BBF67;
-  color: #fff;
+.taskStatus[status=STATUS_ACTIVE] {
+    width: 6px;
+    border-radius: 10px;
+    height: 25px;
+    background-color: #85C98C;
+    color: #fff;
 }
 .taskStatus[status=STATUS_DONE]{
   background-color: #6EBEF4;
   color:#000;
+  height: 25px;
+    border-radius: 10px;
+    width: 6px;
 }
 .taskStatus[status=STATUS_FAILED]{
   background-color: #763A96;
   color: #fff;
+  height: 25px;
+    border-radius: 10px;
+    width: 6px;
 }
 .taskStatus[status=STATUS_SUSPENDED]{
-  background-color: #F9C154;
-  color:#000;
+  height: 25px;
+    border-radius: 10px;
+    width: 6px;
+    background-color: #EECC02;
+    color: #000;
 }
 .taskStatus[status=STATUS_WAITING]{
   background-color:#F79136;
@@ -595,6 +650,27 @@ select.taskStatus{
   stroke-linecap:"round";
   stroke-dasharray:2,2;
 }
+
+.colorByStatus .taskStatusSVG[status="STATUS_ACTIVE"] rect:nth-of-type(2) {
+  fill: url(#progressStripes) !important;
+}
+.taskBoxDiv .taskProgress {
+  background: repeating-linear-gradient(
+    45deg,
+    #4CAF50,
+    #4CAF50 10px,
+    rgba(255,255,255,0.3) 10px,
+    rgba(255,255,255,0.3) 20px
+  ) !important;
+
+  animation: progressStripesMove 1s linear infinite;
+}
+
+@keyframes progressStripesMove {
+  from { background-position: 0 0; }
+  to   { background-position: 40px 0; }
+}
+
 
 .colorByStatus .taskStatusSVG[status=STATUS_ACTIVE]{
   fill: #3BBF67;
@@ -763,6 +839,11 @@ select.taskStatus{
   border: 1px solid #dedede
 }
 
+.taskEditRow:hover td {
+  background-color: #f4f7fe;
+  transition: 0.2s;
+}
+
 /*--------------------------------------------------- Media queries  --------------------------------------------------*/
 
 /* Large screens */
@@ -834,4 +915,18 @@ select.taskStatus{
   .button {
     font-size: 50%;
   }
+}
+.nameWithStatus {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nameWithStatus .taskStatus {
+  width: 8px;
+  height: 25px;
+  /* flex-shrink: 0; */
+}
+.controller-text{
+  margin-left: 10px;
 }
