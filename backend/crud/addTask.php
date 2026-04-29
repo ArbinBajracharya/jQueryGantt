@@ -20,6 +20,7 @@ $start = isset($_POST["start"]) ? trim($_POST["start"]) : "";
 $end = isset($_POST["end"]) ? trim($_POST["end"]) : "";
 $descript = isset($_POST["descript"]) ? trim($_POST["descript"]) : "";
 $dur = isset($_POST["duration"]) ? trim($_POST["duration"]) : "";
+$status = isset($_POST["status"]) ? trim($_POST["status"]) : "";
 $progress = isset($_POST["progress"]) ? trim($_POST["progress"]) : "";
 
 function convertDate($date) {
@@ -42,8 +43,8 @@ if (empty($title)) {
 }
 
 try {
-    $sql = "INSERT INTO task (name, descript, start, end,dur,progress) 
-            VALUES (:title, :descript, :start, :end, :dur, :progress)";
+    $sql = "INSERT INTO task (name, descript, start, end,dur,status,progress) 
+            VALUES (:title, :descript, :start, :end, :dur,:status, :progress)";
 
     $stmt = $conn->prepare($sql);
 
@@ -52,6 +53,7 @@ try {
     $stmt->bindParam(":start", $start);
     $stmt->bindParam(":end", $end);
     $stmt->bindParam(":dur", $dur);
+    $stmt->bindParam(":status", $status);
     $stmt->bindParam(":progress", $progress);
 
     if ($stmt->execute()) {

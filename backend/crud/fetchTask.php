@@ -16,9 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
 }
 
 try {
-    $sql = "SELECT id, name, descript, start, end, dur, progress 
+    $sql = "SELECT id, name, descript, start, end, dur,status, progress 
             FROM task
-            ORDER BY id DESC";
+            ORDER BY id ASC";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute();

@@ -34,8 +34,13 @@ function convertDate($date) {
     return $d->format("Y-m-d");
 }
 
-$start = convertDate($start);
-$end = convertDate($end);
+if (!empty($start)) {
+    $start = convertDate($start);
+}
+
+if (!empty($end)) {
+    $end = convertDate($end);
+}
 
 // Validation
 if (empty($id)) {
@@ -44,35 +49,56 @@ if (empty($id)) {
     exit;
 }
 
-if (empty($title)) {
-    $response["message"] = "Task title is required";
-    echo json_encode($response);
-    exit;
-}
-
 try {
-    $sql = "UPDATE task 
-            SET name = :title,
-                descript = :descript,
-                start = :start,
-                end = :end,
-                progress = :progress,
-                status = :status,
-                dur = :duration
-            WHERE id = :id";
+    $fields = [];
+    $params = [":id" => $id];
+
+    if (!empty($title)) {
+        $fields[] = "name = :title";
+        $params[":title"] = $title;
+    }
+
+    if (!empty($descript)) {
+        $fields[] = "descript = :descript";
+        $params[":descript"] = $descript;
+    }
+
+    if (!empty($start)) {
+        $fields[] = "start = :start";
+        $params[":start"] = $start;
+    }
+
+    if (!empty($end)) {
+        $fields[] = "end = :end";
+        $params[":end"] = $end;
+    }
+
+    if ($progress !== "") {
+        $fields[] = "progress = :progress";
+        $params[":progress"] = $progress;
+    }
+
+    if (!empty($status)) {
+        $fields[] = "status = :status";
+        $params[":status"] = $status;
+    }
+
+    if (!empty($duration)) {
+        $fields[] = "dur = :duration";
+        $params[":duration"] = $duration;
+    }
+
+    if (empty($fields)) {
+        $response["message"] = "No fields to update";
+        echo json_encode($response);
+        exit;
+    }
+
+    $sql = "UPDATE task SET " . implode(", ", $fields) . " WHERE id = :id";
 
     $stmt = $conn->prepare($sql);
 
-    $stmt->bindParam(":id", $id);
-    $stmt->bindParam(":title", $title);
-    $stmt->bindParam(":descript", $descript);
-    $stmt->bindParam(":start", $start);
-    $stmt->bindParam(":end", $end);
-    $stmt->bindParam(":progress", $progress);
-    $stmt->bindParam(":status", $status);
-    $stmt->bindParam(":duration", $duration);
-
-    if ($stmt->execute()) {
+    if ($stmt->execute($params)) {
         $response["success"] = true;
         $response["message"] = "Task updated successfully";
     } else {

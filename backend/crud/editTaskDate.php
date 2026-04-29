@@ -16,26 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 // Get POST data
 $id = isset($_POST["id"]) ? trim($_POST["id"]) : "";
-$title = isset($_POST["title"]) ? trim($_POST["title"]) : "";
 $start = isset($_POST["start"]) ? trim($_POST["start"]) : "";
 $end = isset($_POST["end"]) ? trim($_POST["end"]) : "";
-$descript = isset($_POST["descript"]) ? trim($_POST["descript"]) : "";
-$progress = isset($_POST["progress"]) ? trim($_POST["progress"]) : "";
-$status = isset($_POST["status"]) ? trim($_POST["status"]) : "";
 $duration = isset($_POST["duration"]) ? trim($_POST["duration"]) : "";
-
-// Convert m/d/yyyy → yyyy-mm-dd
-function convertDate($date) {
-    if (empty($date)) return null;
-
-    $d = DateTime::createFromFormat("m/d/Y", $date);
-    if (!$d) return null;
-
-    return $d->format("Y-m-d");
-}
-
-$start = convertDate($start);
-$end = convertDate($end);
 
 // Validation
 if (empty($id)) {
@@ -44,32 +27,30 @@ if (empty($id)) {
     exit;
 }
 
-if (empty($title)) {
-    $response["message"] = "Task title is required";
+if (empty($start)) {
+    $response["message"] = "Start Date not found";
+    echo json_encode($response);
+    exit;
+}
+
+if (empty($end)) {
+    $response["message"] = "End Date not found";
     echo json_encode($response);
     exit;
 }
 
 try {
     $sql = "UPDATE task 
-            SET name = :title,
-                descript = :descript,
-                start = :start,
+            SET start = :start,
                 end = :end,
-                progress = :progress,
-                status = :status,
                 dur = :duration
             WHERE id = :id";
 
     $stmt = $conn->prepare($sql);
 
     $stmt->bindParam(":id", $id);
-    $stmt->bindParam(":title", $title);
-    $stmt->bindParam(":descript", $descript);
     $stmt->bindParam(":start", $start);
     $stmt->bindParam(":end", $end);
-    $stmt->bindParam(":progress", $progress);
-    $stmt->bindParam(":status", $status);
     $stmt->bindParam(":duration", $duration);
 
     if ($stmt->execute()) {

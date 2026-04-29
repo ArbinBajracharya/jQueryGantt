@@ -274,13 +274,13 @@ function createModalPopup(width, height, onCloseCallBack, cssClass, element, pop
 		var alertMsg;
     var ifr=bg.find("iframe");
 
-    if (ifr.length>0){
-      try {
-        alertMsg = ifr.get(0).contentWindow.alertOnUnload();
-      }catch (e){}
-    } else {
-      alertMsg=alertOnUnload(ndo);
-    }
+    // if (ifr.length>0){
+    //   try {
+    //     alertMsg = ifr.get(0).contentWindow.alertOnUnload();
+    //   }catch (e){}
+    // } else {
+    //   alertMsg=alertOnUnload(ndo);
+    // }
 
     if (alertMsg){
       if (!confirm(alertMsg))

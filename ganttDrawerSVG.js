@@ -286,9 +286,41 @@ Ganttalendar.prototype.drawTask = function (task) {
           var taskbox = $(this);
           var task = self.master.getTask(taskbox.attr("taskid"));
           var s = Math.round((parseFloat(taskbox.attr("x")) / self.fx) + self.startMillis);
+          var e = Math.round(((parseFloat(taskbox.attr("x")) + parseFloat(taskbox.attr("width"))) / self.fx) + self.startMillis);
           self.master.beginTransaction();
           self.master.moveTask(task, new Date(s));
           self.master.endTransaction();
+
+          var payload = {
+            id: task.id,
+            duration: task.duration,
+            start: new Date(new Date(s).setDate(new Date(s).getDate() + 1)).toISOString().split("T")[0],
+            end: new Date(e).toISOString().split("T")[0]
+          };
+
+          $.ajax({
+            url: "backend/crud/editTaskDate.php",
+            type: "POST",
+            data: payload,
+            dataType: "json",
+
+            success: function (response) {
+
+              if (response.success) {
+
+                closeBlackPopup();
+
+                alert("Task updated successfully");
+              } else {
+                alert(response.message || "Update failed");
+              }
+            },
+
+            error: function (xhr, status, error) {
+              console.log("AJAX Error:", error);
+              alert("Server error while updating task");
+            }
+          });
         },
         startResize:function (e) {
           $(".ganttSVGBox .focused").removeClass("focused");
@@ -306,6 +338,7 @@ Ganttalendar.prototype.drawTask = function (task) {
           text.attr("x", parseInt(taskbox.attr("x")) + parseInt(taskbox.attr("width")) + 8).html(durationToString(d));
 
           $("[from=" + task.id + "],[to=" + task.id + "]").trigger("update");
+
         },
         stopResize: function (e) {
           self.resDrop = true; //hack to avoid select
@@ -328,6 +361,37 @@ Ganttalendar.prototype.drawTask = function (task) {
           self.master.beginTransaction();
           self.master.changeTaskDates(task, new Date(st), new Date(en));
           self.master.endTransaction();
+
+          var payload = {
+            id: task.id,
+            duration: task.duration,
+            start: new Date(new Date(st).setDate(new Date(st).getDate() + 1)).toISOString().split("T")[0],
+            end: new Date(en).toISOString().split("T")[0]
+          };
+
+          $.ajax({
+            url: "backend/crud/editTaskDate.php",
+            type: "POST",
+            data: payload,
+            dataType: "json",
+
+            success: function (response) {
+
+              if (response.success) {
+
+                closeBlackPopup();
+
+                alert("Task updated successfully");
+              } else {
+                alert(response.message || "Update failed");
+              }
+            },
+
+            error: function (xhr, status, error) {
+              console.log("AJAX Error:", error);
+              alert("Server error while updating task");
+            }
+          });
         }
       });
 

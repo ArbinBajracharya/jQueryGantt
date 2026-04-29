@@ -517,6 +517,36 @@ Task.prototype.changeStatus = function (newStatus,forceStatusCheck) {
           // set progress to 100% if needed by settings
           if (task.master.set100OnClose && !task.progressByWorklog ){
             task.progress=100;
+
+            var payload = {
+              id: task.id,
+              progress: task.progress,
+            };
+
+            $.ajax({
+              url: "backend/crud/multieditTask.php",
+              type: "POST",
+              data: payload,
+              dataType: "json",
+
+              success: function (response) {
+
+                if (response.success) {
+
+                  // closeBlackPopup();
+
+                  // alert("Task updated successfully");
+                  // window.location.reload();
+                } else {
+                  alert(response.message || "Update failed");
+                }
+              },
+
+              error: function (xhr, status, error) {
+                console.log("AJAX Error:", error);
+                alert("Server error while updating task");
+              }
+            });
           }
 
           //set children as done

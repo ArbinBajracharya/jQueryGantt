@@ -438,9 +438,9 @@ body{
   background-color: #ffffff;
 }
 
-input[readonly]{
+/* input[readonly]{
   color: #c0c0c0;
-}
+} */
 
 .taskStatusBox{
   position:absolute;

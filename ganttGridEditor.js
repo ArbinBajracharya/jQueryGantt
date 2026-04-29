@@ -159,18 +159,13 @@ GridEditor.prototype.refreshTaskRow = function (task) {
 
   row.find(".taskRowIndex").html(task.getRow() + 1);
   row.find(".indentCell").css("padding-left", task.level * 10 + 18);
-  row.find("[name=name]").val(task.name);
-  row.find("[name=code]").val(task.code);
+  row.find("[name=name]").val(task.name).prop("readonly",true);
   row.find("[status]").attr("status", task.status);
 
-  row.find("[name=duration]").val(durationToString(task.duration)).prop("readonly",!canWrite || task.isParent() && task.master.shrinkParent);
-  row.find("[name=progress]").val(task.progress).prop("readonly",!canWrite || task.progressByWorklog==true);
-  row.find("[name=startIsMilestone]").prop("checked", task.startIsMilestone);
-  row.find("[name=start]").val(new Date(task.start).format()).updateOldValue().prop("readonly",!canWrite || task.depends || !(task.canWrite  || this.master.permissions.canWrite) ); // called on dates only because for other field is called on focus event
-  row.find("[name=endIsMilestone]").prop("checked", task.endIsMilestone);
-  row.find("[name=end]").val(new Date(task.end).format()).prop("readonly",!canWrite || task.isParent() && task.master.shrinkParent).updateOldValue();
-  row.find("[name=depends]").val(task.depends);
-  row.find(".taskAssigs").html(task.getAssigsString());
+  row.find("[name=duration]").val(durationToString(task.duration)).prop("readonly",true);
+  row.find("[name=progress]").val(task.progress).prop("readonly",true);
+  row.find("[name=start]").val(new Date(task.start).format()).updateOldValue().prop("readonly",true); // called on dates only because for other field is called on focus event
+  row.find("[name=end]").val(new Date(task.end).format()).prop("readonly",true).updateOldValue();
 
   //manage collapsed
   if (task.collapsed)
@@ -233,7 +228,7 @@ GridEditor.prototype.bindRowEvents = function (task, taskRow) {
 
   if (this.master.permissions.canWrite || task.canWrite) {
     self.bindRowInputEvents(task, taskRow);
-
+    
   } else { //cannot write: disable input
     taskRow.find("input").prop("readonly", true);
     taskRow.find("input:checkbox,select").prop("disabled", true);
@@ -500,6 +495,36 @@ GridEditor.prototype.bindRowInputEvents = function (task, taskRow) {
       task.changeStatus(newStatus);
       self.master.endTransaction();
       el.attr("status", task.status);
+
+      var payload = {
+        id: task.id,
+        status: task.status,
+      };
+
+      $.ajax({
+        url: "backend/crud/multieditTask.php",
+        type: "POST",
+        data: payload,
+        dataType: "json",
+
+        success: function (response) {
+
+          if (response.success) {
+
+            closeBlackPopup();
+
+            alert("Task updated successfully");
+            // window.location.reload();
+          } else {
+            alert(response.message || "Update failed");
+          }
+        },
+
+        error: function (xhr, status, error) {
+          console.log("AJAX Error:", error);
+          alert("Server error while updating task");
+        }
+      });
     });
     el.oneTime(3000, "hideChanger", function () {
       changer.remove();
@@ -590,29 +615,51 @@ GridEditor.prototype.openFullEditor = function (task, editOnlyAssig) {
   } else {
 
     //bind dateField on dates, duration
-    taskEditor.find("#start,#end,#duration").click(function () {
+    taskEditor.find("#start,#end,#duration").each(function () {
       var input = $(this);
+
       if (input.is("[entrytype=DATE]")) {
-        input.dateField({
-          inputField: input,
-          minDate:self.minAllowedDate,
-          maxDate:self.maxAllowedDate,
-          callback:   function (d) {$(this).blur();}
+        flatpickr(this, {
+          minDate: self.minAllowedDate,
+          maxDate: self.maxAllowedDate,
+          dateFormat: "m/d/Y",
+
+          onChange: function (selectedDates, dateStr, instance) {
+            $(instance.input).blur();
+          }
         });
       }
     }).blur(function () {
       var inp = $(this);
+
       if (inp.validateField()) {
-        resynchDates(inp, taskEditor.find("[name=start]"), taskEditor.find("[name=startIsMilestone]"), taskEditor.find("[name=duration]"), taskEditor.find("[name=end]"), taskEditor.find("[name=endIsMilestone]"));
-        //workload computation
-        if (typeof(workloadDatesChanged)=="function")
+        resynchDates(
+          inp,
+          taskEditor.find("[name=start]"),
+          taskEditor.find("[name=startIsMilestone]"),
+          taskEditor.find("[name=duration]"),
+          taskEditor.find("[name=end]"),
+          taskEditor.find("[name=endIsMilestone]")
+        );
+
+        // workload computation
+        if (typeof(workloadDatesChanged) == "function") {
           workloadDatesChanged();
+        }
       }
     });
 
     taskEditor.find("#startIsMilestone,#endIsMilestone").click(function () {
       var inp = $(this);
-      resynchDates(inp, taskEditor.find("[name=start]"), taskEditor.find("[name=startIsMilestone]"), taskEditor.find("[name=duration]"), taskEditor.find("[name=end]"), taskEditor.find("[name=endIsMilestone]"));
+
+      resynchDates(
+        inp,
+        taskEditor.find("[name=start]"),
+        taskEditor.find("[name=startIsMilestone]"),
+        taskEditor.find("[name=duration]"),
+        taskEditor.find("[name=end]"),
+        taskEditor.find("[name=endIsMilestone]")
+      );
     });
 
     //bind add assignment
@@ -637,6 +684,7 @@ GridEditor.prototype.openFullEditor = function (task, editOnlyAssig) {
         descript: taskEditor.find("#description").val(),
         progress: taskEditor.find("#progress").val(),
         duration: taskEditor.find("#duration").val(),
+        status: taskEditor.find("#status").val(),
         start: taskEditor.find("#start").val(),
         end: taskEditor.find("#end").val()
       };
@@ -726,23 +774,37 @@ GridEditor.prototype.openFullAdd = function (task, editOnlyAssig) {
   var taskEditor = $.JST.createFromTemplate(task, "TASK_ADD");
 
   //bind dateField on dates, duration
-  taskEditor.find("#addstart,#addend,#addduration").click(function () {
+  taskEditor.find("#addstart,#addend,#addduration").each(function () {
     var input = $(this);
+
     if (input.is("[entrytype=DATE]")) {
-      input.dateField({
-        inputField: input,
-        minDate:self.minAllowedDate,
-        maxDate:self.maxAllowedDate,
-        callback:   function (d) {$(this).blur();}
+      flatpickr(this, {
+        minDate: self.minAllowedDate,
+        maxDate: self.maxAllowedDate,
+        dateFormat: "m/d/Y",
+
+        onChange: function (selectedDates, dateStr, instance) {
+          $(instance.input).blur();
+        }
       });
     }
   }).blur(function () {
     var inp = $(this);
+
     if (inp.validateField()) {
-      resynchDates(inp, taskEditor.find("[name=start]"), taskEditor.find("[name=startIsMilestone]"), taskEditor.find("[name=duration]"), taskEditor.find("[name=end]"), taskEditor.find("[name=endIsMilestone]"));
-      //workload computation
-      if (typeof(workloadDatesChanged)=="function")
+      resynchDates(
+        inp,
+        taskEditor.find("[name=start]"),
+        taskEditor.find("[name=startIsMilestone]"),
+        taskEditor.find("[name=duration]"),
+        taskEditor.find("[name=end]"),
+        taskEditor.find("[name=endIsMilestone]")
+      );
+
+      // workload computation
+      if (typeof(workloadDatesChanged) == "function") {
         workloadDatesChanged();
+      }
     }
   });
 
@@ -753,6 +815,7 @@ GridEditor.prototype.openFullAdd = function (task, editOnlyAssig) {
       title: taskEditor.find("#name").val(),
       descript: taskEditor.find("#description").val(),
       progress: taskEditor.find("#progress").val(),
+      status: taskEditor.find("#status").val(),
       duration: taskEditor.find("#addduration").val(),
       start: taskEditor.find("#addstart").val(),
       end: taskEditor.find("#addend").val()
