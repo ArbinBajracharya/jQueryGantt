@@ -489,7 +489,7 @@ Ganttalendar.prototype.drawTask = function (task) {
           textStyle["font-weight"]="bold";
         if (task.progress > 90)
           textStyle.transform = "translate(-40)";
-        svg.text(taskSvg, (task.progress > 90 ? 100 : task.progress) + "%", (self.master.rowHeight - 5) / 2, (task.progress > 100 ? "!!! " : "") + task.progress + "%", textStyle);
+        svg.text(taskSvg, (task.progress > 90 ? 100 : task.progress) + "%", (self.master.rowHeight) / 3.46, (task.progress > 100 ? "!!! " : "") + task.progress + "%", textStyle);
       }
     }
 
@@ -805,7 +805,7 @@ Ganttalendar.prototype.redrawTasks = function (drawAll) {
   }
 
   //creates rows grid
-  for (var i = 40; i <= self.master.editor.element.height(); i += self.master.rowHeight)
+  for (var i = 45; i <= self.master.editor.element.height(); i += self.master.rowHeight)
     self.svg.rect(gridGroup, 0, i, "100%", self.master.rowHeight, {class: "ganttLinesSVG"});
 
   // drawTodayLine
