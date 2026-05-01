@@ -105,7 +105,7 @@ teamwork icon
 -------------------------------------------------------
 */
 
-.teamworkIcon {
+.teamworkIcon{
   font-family: 'TeamworkRegular' !important;
   color: #34495e;
   font-weight: normal;
@@ -116,6 +116,7 @@ teamwork icon
   -moz-font-smoothing: antialiased;
 
 }
+
 
 .teamworkIcon:hover {
   opacity: .8
@@ -280,6 +281,10 @@ TH, .tableHeader {
 .resourceEditor .formElements {
   background-color: #F5F5F5;
   border-color: #CECECE
+}
+.ganttTaskEditor span{
+  color: red;
+  padding: 4px;
 }
 
 table .resRow td, table .assigEditRow td {
@@ -494,8 +499,8 @@ Buttons
 }
 
 .button.first {
-  background-color: #75a800;
-  font-weight: bold;
+  background-color: #004D96;
+  font-weight: 400;
 }
 
 .button.small {
@@ -580,6 +585,10 @@ span.separator {
 .button.add .teamworkIcon {
   color: #009E94;
 }
+/*my code*/
+.teamworkIcon {
+  font-size: 20px;
+}
 
 form {
   margin: 0;
@@ -587,8 +596,9 @@ form {
 }
 
 select {
-  border: 1px solid #91B4B7;
-  padding: 4px;
+  border-radius: 5px;
+  border: 1px solid #A8a8a8;
+  padding: 6px;
   font-size: 16px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
@@ -839,4 +849,5 @@ iframe#bwinPopup {
   position: absolute;
   left: -5000px;
 }
+
 
