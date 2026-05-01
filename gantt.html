@@ -59,24 +59,141 @@
              height="12"
              patternTransform="rotate(45)">
 
-      <g>
         <rect width="12" height="12" fill="#4CAF50"></rect>
-        <rect width="6" height="12" fill="white" opacity="0.25"></rect>
+        <rect width="6" height="12" fill="white" opacity="0.50"></rect>
 
-        <!-- THIS creates the slanted animation -->
         <animateTransform
-          attributeName="transform"
+          attributeName="patternTransform"
+          additive="sum"
           type="translate"
           from="0 0"
           to="12 0"
-          dur="2s"
+          dur="1s"
           repeatCount="indefinite"/>
-      </g>
 
     </pattern>
   </defs>
 </svg>
 
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <pattern id="progressStripesDone"
+             patternUnits="userSpaceOnUse"
+             width="12"
+             height="12"
+             patternTransform="rotate(45)">
+
+        <rect width="12" height="12" fill="#6EBEF4"></rect>
+        <rect width="6" height="12" fill="white" opacity="0.50"></rect>
+
+        <animateTransform
+          attributeName="patternTransform"
+          additive="sum"
+          type="translate"
+          from="0 0"
+          to="12 0"
+          dur="1s"
+          repeatCount="indefinite"/>
+
+    </pattern>
+  </defs>
+</svg>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <pattern id="progressStripesDone"
+             patternUnits="userSpaceOnUse"
+             width="12"
+             height="12"
+             patternTransform="rotate(45)">
+
+        <rect width="12" height="12" fill="#6EBEF4"></rect>
+        <rect width="6" height="12" fill="white" opacity="0.50"></rect>
+
+        <animateTransform
+          attributeName="patternTransform"
+          additive="sum"
+          type="translate"
+          from="0 0"
+          to="12 0"
+          dur="1s"
+          repeatCount="indefinite"/>
+
+    </pattern>
+  </defs>
+</svg>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <pattern id="progressStripesSusp"
+             patternUnits="userSpaceOnUse"
+             width="12"
+             height="12"
+             patternTransform="rotate(45)">
+
+        <rect width="12" height="12" fill="#f9c154"></rect>
+        <rect width="6" height="12" fill="white" opacity="0.50"></rect>
+
+        <animateTransform
+          attributeName="patternTransform"
+          additive="sum"
+          type="translate"
+          from="0 0"
+          to="12 0"
+          dur="1s"
+          repeatCount="indefinite"/>
+
+    </pattern>
+  </defs>
+</svg>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <pattern id="progressStripesFail"
+             patternUnits="userSpaceOnUse"
+             width="12"
+             height="12"
+             patternTransform="rotate(45)">
+
+        <rect width="12" height="12" fill="#763A96"></rect>
+        <rect width="6" height="12" fill="white" opacity="0.50"></rect>
+
+        <animateTransform
+          attributeName="patternTransform"
+          additive="sum"
+          type="translate"
+          from="0 0"
+          to="12 0"
+          dur="1s"
+          repeatCount="indefinite"/>
+
+    </pattern>
+  </defs>
+</svg>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <pattern id="progressStripesUn"
+             patternUnits="userSpaceOnUse"
+             width="12"
+             height="12"
+             patternTransform="rotate(45)">
+
+        <rect width="12" height="12" fill="#dededf"></rect>
+        <rect width="6" height="12" fill="white" opacity="0.50"></rect>
+
+        <animateTransform
+          attributeName="patternTransform"
+          additive="sum"
+          type="translate"
+          from="0 0"
+          to="12 0"
+          dur="1s"
+          repeatCount="indefinite"/>
+
+    </pattern>
+  </defs>
+</svg>
 
 <div id="workSpace" style="padding:0px; overflow-y:auto; overflow-x:hidden;border:1px solid #e5e5e5;position:relative;margin:0 5px"></div>
 
@@ -638,10 +755,15 @@ function showBaselineInfo (event,element){
         <option value="7">7 year</option>
       </select>
       <button onclick="$('#workSpace').trigger('print.gantt');return false;" class="button textual icon " title="Print"><span class="teamworkIcon">p</span></button>
+    
+    <span class="ganttButtonSeparator requireCanSeeCriticalPath"></span>
+      <button onclick="ge.splitter.resize(.1);return false;" class="button textual icon" ><span class="teamworkIcon">F</span></button>
+      <button onclick="ge.splitter.resize(50);return false;" class="button textual icon" ><span class="teamworkIcon">O</span></button>
+      <button onclick="ge.splitter.resize(100);return false;" class="button textual icon"><span class="teamworkIcon">R</span></button>
 
     <span class="ganttButtonSeparator"></span>
       <button onclick="$('#workSpace').trigger('openFullAdd.gantt');return false" class="button first big" title="Save">Add</button>
-      <button onclick='newProject();' class='button newproject'>Clear</button>
+      
   </div>
   -->
 </div>

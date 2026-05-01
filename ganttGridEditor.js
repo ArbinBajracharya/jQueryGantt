@@ -479,58 +479,58 @@ GridEditor.prototype.bindRowInputEvents = function (task, taskRow) {
 
 
   //change status
-  taskRow.find(".taskStatus").click(function () {
-    var el = $(this);
-    var tr = el.closest("[taskid]");
-    var taskId = tr.attr("taskid");
-    var task = self.master.getTask(taskId);
+  // taskRow.find(".taskStatus").click(function () {
+  //   var el = $(this);
+  //   var tr = el.closest("[taskid]");
+  //   var taskId = tr.attr("taskid");
+  //   var task = self.master.getTask(taskId);
 
-    var changer = $.JST.createFromTemplate({}, "CHANGE_STATUS");
-    changer.find("[status=" + task.status + "]").addClass("selected");
-    changer.find(".taskStatus").click(function (e) {
-      e.stopPropagation();
-      var newStatus = $(this).attr("status");
-      changer.remove();
-      self.master.beginTransaction();
-      task.changeStatus(newStatus);
-      self.master.endTransaction();
-      el.attr("status", task.status);
+  //   var changer = $.JST.createFromTemplate({}, "CHANGE_STATUS");
+  //   changer.find("[status=" + task.status + "]").addClass("selected");
+  //   changer.find(".taskStatus").click(function (e) {
+  //     e.stopPropagation();
+  //     var newStatus = $(this).attr("status");
+  //     changer.remove();
+  //     self.master.beginTransaction();
+  //     task.changeStatus(newStatus);
+  //     self.master.endTransaction();
+  //     el.attr("status", task.status);
 
-      var payload = {
-        id: task.id,
-        status: task.status,
-      };
+  //     var payload = {
+  //       id: task.id,
+  //       status: task.status,
+  //     };
 
-      $.ajax({
-        url: "backend/crud/multieditTask.php",
-        type: "POST",
-        data: payload,
-        dataType: "json",
+  //     $.ajax({
+  //       url: "backend/crud/multieditTask.php",
+  //       type: "POST",
+  //       data: payload,
+  //       dataType: "json",
 
-        success: function (response) {
+  //       success: function (response) {
 
-          if (response.success) {
+  //         if (response.success) {
 
-            closeBlackPopup();
+  //           closeBlackPopup();
 
-            alert("Task updated successfully");
-            // window.location.reload();
-          } else {
-            alert(response.message || "Update failed");
-          }
-        },
+  //           alert("Task updated successfully");
+  //           // window.location.reload();
+  //         } else {
+  //           alert(response.message || "Update failed");
+  //         }
+  //       },
 
-        error: function (xhr, status, error) {
-          console.log("AJAX Error:", error);
-          alert("Server error while updating task");
-        }
-      });
-    });
-    el.oneTime(3000, "hideChanger", function () {
-      changer.remove();
-    });
-    el.after(changer);
-  });
+  //       error: function (xhr, status, error) {
+  //         console.log("AJAX Error:", error);
+  //         alert("Server error while updating task");
+  //       }
+  //     });
+  //   });
+  //   el.oneTime(3000, "hideChanger", function () {
+  //     changer.remove();
+  //   });
+  //   el.after(changer);
+  // });
 
 };
 

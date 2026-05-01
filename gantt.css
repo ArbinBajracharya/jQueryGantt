@@ -528,7 +528,7 @@ button:hover {
   box-shadow: none;
   border-radius: 50%;
   border:0;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .taskStatus[status=STATUS_ACTIVE] {
     width: 6px;
@@ -676,6 +676,18 @@ select.taskStatus{
 
 .colorByStatus .taskStatusSVG[status="STATUS_ACTIVE"] rect:nth-of-type(2) {
   fill: url(#progressStripes) !important;
+}
+.colorByStatus .taskStatusSVG[status="STATUS_DONE"] rect:nth-of-type(2) {
+  fill: url(#progressStripesDone) !important;
+}
+.colorByStatus .taskStatusSVG[status="STATUS_FAILED"] rect:nth-of-type(2) {
+  fill: url(#progressStripesFail) !important;
+}
+.colorByStatus .taskStatusSVG[status="STATUS_SUSPENDED"] rect:nth-of-type(2) {
+  fill: url(#progressStripesSusp) !important;
+}
+.colorByStatus .taskStatusSVG[status="STATUS_UNDEFINED"] rect:nth-of-type(2) {
+  fill: url(#progressStripesUn) !important;
 }
 .taskBoxDiv .taskProgress {
   background: repeating-linear-gradient(

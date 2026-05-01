@@ -482,7 +482,7 @@ Ganttalendar.prototype.drawTask = function (task) {
 
     //progress
     if (task.progress > 0) {
-      var progress = svg.rect(taskSvg, 0, "20%", (task.progress > 100 ? 100 : task.progress) + "%", "60%", {rx:"2", ry:"2",fill:"rgba(0,0,0,.4)"});
+      var progress = svg.rect(taskSvg, 0, 0, (task.progress > 100 ? 100 : task.progress) + "%", "100%", {rx:"2", ry:"2"});
       if (dimensions.width > 50) {
         var textStyle = {fill:"#888", "font-size":"10px",class:"textPerc teamworkIcons",transform:"translate(5)"};
         if (task.progress > 100)
@@ -816,6 +816,53 @@ Ganttalendar.prototype.redrawTasks = function (drawAll) {
 
 
   //prof.stop();
+};
+
+Ganttalendar.prototype.printTasks = function (drawAll) {
+  var self = this;
+
+  // Sort tasks by start date ascending, then end date descending
+  var sortedTasks = self.master.tasks.slice().sort(function (a, b) {
+    if (a.start !== b.start) return a.start - b.start;
+    return b.end - a.end;
+  });
+
+  // Filter out collapsed descendants first
+  var collapsedDescendant = this.master.getCollapsedDescendant();
+  var visibleTasks = sortedTasks.filter(function (task) {
+    return collapsedDescendant.indexOf(task) < 0;
+  });
+
+  // Resize table to fit only visible tasks (no empty rows)
+  var tableHeight = 45 + visibleTasks.length * self.master.rowHeight;
+  self.element.find("table.ganttTable").height(tableHeight);
+
+  var startRowAdd = self.master.firstScreenLine - self.master.rowBufferSize;
+  var endRowAdd = self.master.firstScreenLine + self.master.numOfVisibleRows + self.master.rowBufferSize;
+
+  $("#linksGroup,#tasksGroup").empty();
+  var gridGroup = $("#gridGroup").empty().get(0);
+
+  self.master.firstVisibleTaskIndex = -1;
+
+  for (var i = 0; i < visibleTasks.length; i++) {
+    var task = visibleTasks[i];
+    if (drawAll || (i >= startRowAdd && i < endRowAdd)) {
+      this.drawTask(task);
+      self.master.firstVisibleTaskIndex = self.master.firstVisibleTaskIndex == -1 ? i : self.master.firstVisibleTaskIndex;
+      self.master.lastVisibleTaskIndex = i;
+    }
+  }
+
+  // Draw grid only for actual task rows (no empty rows)
+  for (var i = 45; i <= tableHeight; i += self.master.rowHeight)
+    self.svg.rect(gridGroup, 0, i, "100%", self.master.rowHeight, { class: "ganttLinesSVG" });
+
+  // Draw today line
+  if (new Date().getTime() > self.startMillis && new Date().getTime() < self.endMillis) {
+    var x = Math.round(((new Date().getTime()) - self.startMillis) * self.fx);
+    self.svg.line(gridGroup, x, 0, x, "100%", { class: "ganttTodaySVG" });
+  }
 };
 
 

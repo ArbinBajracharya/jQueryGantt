@@ -1,59 +1,64 @@
-.noprint {
-  display:none !important;
-}
+@media print {
 
-BODY, TBODY {
-  font-family: arial;
-  font-size: 12px;
-  margin: 0;
-  color: #000;
-  overflow: visible!important;
-}
+  .noprint,
+  .teamworkIcon,
+  .vSplitBar,
+  .emptyRow,
+  .ganttFixHead {
+    display: none !important;
+  }
 
-.teamworkIcon{
-  display:none;
-}
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow: visible !important;
+    zoom: 0.65;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+  }
 
-.mainColumn{
-  width:98% !important;
-}
+  .mainColumn,
+  .splitterContainer {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
 
+  .splitElement,
+  .splitBox1,
+  .splitBox2 {
+    position: static !important;
+    display: inline-block !important;
+    vertical-align: top !important;
+    overflow: visible !important;
+    page-break-before: auto !important;
+    break-before: auto !important;
+  }
 
-#TWGanttArea{
-  overflow-x: visible !important;
-  overflow-y: visible !important;
-  width: auto !important;
-  height: auto !important;
-  border:none !important;
-}
+  .splitBox1 {
+    width: 50% !important; /* task list */
+  }
 
-.splitterContainer{
-  width: auto !important;
-  height: auto !important;
-}
-.splitElement{
-  position: static !important;
-  width: auto !important;
-  height: auto !important;
-  top:0 !important;
-  left: 0 !important;
-  overflow-x: visible !important;
-  overflow-y: visible !important;
-}
+  .splitBox2 {
+    width: 50% !important; /* gantt bars */
+  }
 
-.vSplitBar,.emptyRow{
-  display: none !important;
-}
+  #TWGanttArea {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    border: none !important;
+  }
 
-.gdfTable{
-   width: 0 !important;
- }
+  .gdfTable {
+    width: 100% !important;
+  }
 
-.splitBox2{
-  page-break-before: always !important;
-}
-
-
-.ganttFixHead{
-  display: none !important;
+  @page {
+    size: landscape;
+    margin: 5mm;
+  }
 }

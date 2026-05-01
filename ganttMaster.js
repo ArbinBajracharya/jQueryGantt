@@ -1404,7 +1404,7 @@ GanttMaster.prototype.saveRequired = function () {
 
 
 GanttMaster.prototype.print = function () {
-  this.gantt.redrawTasks(true);
+  this.gantt.printTasks(true);
   print();
 };
 
