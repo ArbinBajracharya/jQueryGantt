@@ -51,27 +51,31 @@
 </head>
 <body style="background-color: #fff;">
 
-      <svg width="0" height="0" style="position:absolute">
-    <defs>
-      <pattern id="progressStripes"
-               patternUnits="userSpaceOnUse"
-               width="12"
-               height="12"
-               patternTransform="rotate(45)">
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <pattern id="progressStripes"
+             patternUnits="userSpaceOnUse"
+             width="12"
+             height="12"
+             patternTransform="rotate(45)">
 
+      <g>
         <rect width="12" height="12" fill="#4CAF50"></rect>
         <rect width="6" height="12" fill="white" opacity="0.25"></rect>
 
+        <!-- THIS creates the slanted animation -->
         <animateTransform
-          attributeName="patternTransform"
+          attributeName="transform"
           type="translate"
           from="0 0"
           to="12 0"
-          dur="0.6s"
+          dur="2s"
           repeatCount="indefinite"/>
-      </pattern>
-    </defs>
-  </svg>
+      </g>
+
+    </pattern>
+  </defs>
+</svg>
 
 
 <div id="workSpace" style="padding:0px; overflow-y:auto; overflow-x:hidden;border:1px solid #e5e5e5;position:relative;margin:0 5px"></div>

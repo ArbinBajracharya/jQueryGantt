@@ -205,6 +205,29 @@ button:hover {
   z-index: 2;
   top:0;
 }
+.splitElement {
+  transition: all 0.3s ease;
+}
+.ganttGrid,
+.gdfWrapper {
+  width: 100% !important;
+  overflow: auto;
+  overflow-x: auto;
+}
+
+.gdfTable {
+  width: 100% !important;
+  table-layout: auto; /* forces columns to fit */
+}
+
+.gdfTable td,
+.gdfTable th {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: auto !important;
+}
+
 
 /* -------------------------------------- GANTT -----------------------------------*/
 
@@ -463,9 +486,8 @@ button:hover {
 }
 
 .taskEditRow input:focus{
-  font-weight: bold;
+  font-weight: 600;
 }
-
 .taskEditRow input{
   background-color: transparent;
 }
@@ -658,18 +680,22 @@ select.taskStatus{
 .taskBoxDiv .taskProgress {
   background: repeating-linear-gradient(
     45deg,
-    #4CAF50,
-    #4CAF50 10px,
-    rgba(255,255,255,0.3) 10px,
-    rgba(255,255,255,0.3) 20px
-  ) !important;
+    #4caf50,
+    #4caf50 10px,
+    rgba(255, 255, 255, 0.3) 10px,
+    rgba(255, 255, 255, 0.3) 20px
+  );
 
-  animation: progressStripesMove 1s linear infinite;
+  animation: progressStripesMove 2s linear infinite;
 }
 
 @keyframes progressStripesMove {
-  from { background-position: 0 0; }
-  to   { background-position: 40px 0; }
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 40px 40px;
+  }
 }
 
 
