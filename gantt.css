@@ -1,8 +1,7 @@
-
-body{
+body {
   overflow: hidden;
-  font-family: 'Poppins', Arial, sans-serif;
-   background: #f6f8fc;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #f6f8fc;
 }
 .gdfCell,
 .gdfTable td,
@@ -10,7 +9,7 @@ body{
 .taskEditRow input,
 .ganttButtonBar,
 button {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
 }
 
 button {
@@ -30,11 +29,11 @@ button:hover {
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   background: #fff;
 } */
-.TWGanttWorkSpace.ganttFullScreen{
+.TWGanttWorkSpace.ganttFullScreen {
   position: fixed;
-  top:0;
-  left:0;
-  bottom:0;
+  top: 0;
+  left: 0;
+  bottom: 0;
   right: 0;
   margin: auto;
   z-index: 1000;
@@ -49,7 +48,8 @@ button:hover {
   background-color: #fff;
 }
 
-.gdfTable td, .gdfTable th {
+.gdfTable td,
+.gdfTable th {
   /* vertical-align: middle; */
   text-align: left;
   overflow: hidden;
@@ -68,7 +68,7 @@ button:hover {
   font-family: arial, helvetica, sans-serif;
 }
 
-.gdfCell.noClip{
+.gdfCell.noClip {
   overflow: visible;
 }
 
@@ -77,7 +77,7 @@ button:hover {
   color: #333;
   font-weight: 500;
   border-bottom: 1px solid #ddd;
-  padding: 15px;
+  padding: 12.5px;
   /* padding: 15px;
   min-width: 5px;
   height: 30px;
@@ -92,8 +92,8 @@ button:hover {
 
 .gdfCell:last-of-type {
   border-right: none;
+  text-align: center;
 }
-
 
 .gdfCellInput {
   border: 0 none;
@@ -121,7 +121,7 @@ button:hover {
   cursor: w-resize;
 }
 
-.cellInner{
+.cellInner {
   padding: 10px;
 }
 
@@ -131,7 +131,7 @@ button:hover {
   height: 100%;
 }
 
-.splitBox1{
+.splitBox1 {
   overflow-x: scroll;
   overflow-y: hidden;
 }
@@ -140,7 +140,6 @@ button:hover {
   overflow-x: scroll;
   overflow-y: auto;
 }
-
 
 .splitElement {
   outline-style: none;
@@ -156,19 +155,22 @@ button:hover {
   cursor: ew-resize;
   text-align: center;
   color: white;
-  box-shadow: 0 0 3px rgba(0, 0, 0, .4);
-  background: rgba(170, 170, 170, .2) url("res/ganttSplitterGrip.png") no-repeat center center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  background: rgba(170, 170, 170, 0.2) url("res/ganttSplitterGrip.png")
+    no-repeat center center;
   z-index: 5;
 }
 
-.unselectable .vSplitBar, .vSplitBar:hover  {
-  background-color: rgba(170, 170, 170, .5);
-  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-
+.unselectable .vSplitBar,
+.vSplitBar:hover {
+  background-color: rgba(170, 170, 170, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-.vSplitBar .toLeft,.vSplitBar .toRight,.vSplitBar .toCenter{
-  font-family: icons,TeamworkRegular;
+.vSplitBar .toLeft,
+.vSplitBar .toRight,
+.vSplitBar .toCenter {
+  font-family: icons, TeamworkRegular;
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -182,31 +184,36 @@ button:hover {
   /*box-shadow: 0 0 1px rgba(0, 0, 0, .5);*/
 }
 
-.unselectable .vSplitBar .toLeft,.unselectable  .vSplitBar .toCenter,.unselectable  .vSplitBar .toRight, .vSplitBar:hover .toLeft, .vSplitBar:hover .toRight, .vSplitBar:hover .toCenter{
+.unselectable .vSplitBar .toLeft,
+.unselectable .vSplitBar .toCenter,
+.unselectable .vSplitBar .toRight,
+.vSplitBar:hover .toLeft,
+.vSplitBar:hover .toRight,
+.vSplitBar:hover .toCenter {
   /*background-color: rgba(170, 170, 170, 1);*/
   /*background-color: rgba(0, 126, 221, 1);*/
   background-color: rgba(47, 170, 201, 1);
 
-  box-shadow: 0 0 1px rgba(0, 0, 0, .4);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
 }
 
 .vSplitBar .toLeft {
   left: -19px;
   text-align: left;
 }
-.vSplitBar .toCenter{
-  left:-4px;
+.vSplitBar .toCenter {
+  left: -4px;
   text-align: center;
 }
-.vSplitBar .toRight{
-  left:10px;
+.vSplitBar .toRight {
+  left: 10px;
   text-align: right;
 }
 
-.ganttFixHead{
+.ganttFixHead {
   position: absolute;
   z-index: 2;
-  top:0;
+  top: 0;
 }
 .splitElement {
   transition: all 0.3s ease;
@@ -231,72 +238,75 @@ button:hover {
   width: auto !important;
 }
 
-
 /* -------------------------------------- GANTT -----------------------------------*/
 
-.ganttTable{
-  table-layout:fixed;
+.ganttTable {
+  table-layout: fixed;
   background-color: #ffffff;
 }
 
-.ganttTable td,.ganttTable th{
+.ganttTable td,
+.ganttTable th {
   overflow: hidden;
   text-overflow: clip;
   white-space: nowrap;
 }
 
-.ganttHead1,.ganttHead2{
-  height:23px;
+.ganttHead1,
+.ganttHead2 {
+  height: 23px;
 }
 
-.ganttHead1 th{
-  border-left:1px solid #b0b0b0;
+.ganttHead1 th {
+  border-left: 1px solid #b0b0b0;
   padding: 0;
   margin: 0;
   /*border-right: 1px solid #bbb;*/
-  border-bottom:1px solid #bbb;
-  background: #EEEEEE;
+  border-bottom: 1px solid #bbb;
+  background: #eeeeee;
   white-space: pre-line;
   word-break: break-all;
 }
 
 .ganttHead1 th,
-.ganttHead2 th{
+.ganttHead2 th {
   white-space: nowrap;
   overflow: hidden;
 }
 
-.ganttHead2 th{
+.ganttHead2 th {
   padding: 0;
   margin: 0;
-  border-left:1px solid #b0b0b0;
+  border-left: 1px solid #b0b0b0;
   /*border-right: 1px solid #bbb;*/
-  border-bottom:2px solid #bbb;
-  background: #EEEEEE;
+  border-bottom: 2px solid #bbb;
+  background: #eeeeee;
 }
 
-.ganttHead1 th.headSmall,.ganttHead2 th.headSmall{
+.ganttHead1 th.headSmall,
+.ganttHead2 th.headSmall {
   font-size: 10px;
 }
 
-.ganttHead1 th.headLeft,.ganttHead2 th.headLeft{
+.ganttHead1 th.headLeft,
+.ganttHead2 th.headLeft {
   text-align: left;
 }
 
-.ganttToday{
-  position:absolute;
-  top:0;
-  width:1px;
-  height:100%;
-  border-left:2px dotted #13AFA5;
+.ganttToday {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  border-left: 2px dotted #13afa5;
 }
 
 .ganttTitle img {
   max-width: 150px;
 }
 
-.ganttButtonBar{
-  position:relative;
+.ganttButtonBar {
+  position: relative;
   z-index: 2;
   /*background-color: #fff;*/
   /* border-bottom: 1px solid #959595; */
@@ -304,30 +314,30 @@ button:hover {
   padding: 8px;
 }
 
-.dataTable .ganttButtonBar{
+.dataTable .ganttButtonBar {
   border-bottom: none;
 }
 
 .ganttButtonBar .buttons {
   align-items: center;
-      /* padding: 0 10px; */
-    justify-content: space-between;
-    display: flex;
-    position: relative;
-    /* display: inline-block; */
-    width: 100%;
-    margin-top: 0;
-    height: 45px
+  /* padding: 0 10px; */
+  justify-content: space-between;
+  display: flex;
+  position: relative;
+  /* display: inline-block; */
+  width: 100%;
+  margin-top: 0;
+  height: 45px;
 }
 
 .dataTable .ganttButtonBar .buttons {
-  display:inline-block;
+  display: inline-block;
   width: 100%;
 }
 
-.ganttButtonBar .buttons button{
+.ganttButtonBar .buttons button {
   vertical-align: middle;
-  margin:0;
+  margin: 0;
   outline: none;
   margin-left: 5px;
 }
@@ -338,13 +348,12 @@ button:hover {
 .ganttButtonBar .button.big {
   font-weight: 400;
   padding: 7px 14px;
-    font-size: 14px;
-    border-radius: 8px;
-    height: 35px;
-    /* margin-left: 4px; */
-    /* margin: 0px 10px; */
+  font-size: 14px;
+  border-radius: 8px;
+  height: 35px;
+  /* margin-left: 4px; */
+  /* margin: 0px 10px; */
 }
-
 
 .button span.teamworkIcon {
   text-indent: -10px;
@@ -355,70 +364,65 @@ button:hover {
   /* vertical-align: middle; */
 }
 
-
 /*my code*/
 .button.textual span.teamworkIcon {
   transition: all 0.2s ease;
-      box-shadow: 0 4px 20px #eee;
-    border-radius: 5px;
-    border: 1px solid #eee;
-    padding: 5px;
-    font-size: 120%;
+  box-shadow: 0 4px 20px #eee;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  padding: 5px;
+  font-size: 120%;
 }
-.button.textual span.teamworkIcon:hover{
-  color: #004D96;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+.button.textual span.teamworkIcon:hover {
+  color: #004d96;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
 
-
 #saveGanttButton {
-  margin-left:20px;
+  margin-left: 20px;
   padding: 5px 12px;
   margin-bottom: 0;
   vertical-align: middle;
 }
 
-
-.ganttButtonSeparator{
-  border-left:1.5px solid #dadada;
-  margin:0 10px;
+.ganttButtonSeparator {
+  border-left: 1.5px solid #dadada;
+  margin: 0 10px;
   font-size: 130%;
   vertical-align: middle;
 }
 
-.ganttLines{
-  position:absolute;
-  width:100%;
-  height:1px;
-  border-top:1px solid #eee;
-  z-index:1;
+.ganttLines {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  border-top: 1px solid #eee;
+  z-index: 1;
 }
 
-.ganttLinks{
-  z-index:10;
+.ganttLinks {
+  z-index: 10;
 }
 
-
-.ganttTable td.end{
+.ganttTable td.end {
   border-right: 2px dotted #ddd;
 }
 
-.ganttHead2 th.holy{
-  background-color: rgba(236, 195, 176, 0.40);
+.ganttHead2 th.holy {
+  background-color: rgba(236, 195, 176, 0.4);
 }
-.ganttBodyCell.holy{
+.ganttBodyCell.holy {
   background-color: rgba(255, 245, 230, 0.51);
 }
 
-
 /* -------------------------------------- TASK -----------------------------------*/
 
-.taskBoxDiv{
-  position:absolute;
-  height:25px;
-  margin-top:3px;
-  z-index:100;
+.taskBoxDiv {
+  position: absolute;
+  height: 25px;
+  margin-top: 3px;
+  z-index: 100;
 }
 
 .taskBoxDiv .layout {
@@ -431,61 +435,58 @@ button:hover {
   background: linear-gradient(135deg, #4f46e5, #6366f1);
   border: none;
   border-radius: 6px;
-
 }
 
 .taskBoxDiv .taskStatus {
-  left:5px;
-  top:10px;
-  position:absolute;
-  width:10px;
-  height:10px;
+  left: 5px;
+  top: 10px;
+  position: absolute;
+  width: 10px;
+  height: 10px;
 }
 
-.taskBoxDiv .layout .milestone{
-  top:0;
-  position:absolute;
-  width:18px;
+.taskBoxDiv .layout .milestone {
+  top: 0;
+  position: absolute;
+  width: 18px;
   background: url(res/milestone.png) no-repeat;
-  height:18px;
-  display:none;
+  height: 18px;
+  display: none;
 }
-.taskBoxDiv .layout .milestone.end{
-  right:0;
+.taskBoxDiv .layout .milestone.end {
+  right: 0;
 }
-.taskBoxDiv .layout .milestone.active{
-  display:block;
-}
-
-.taskBoxDiv.hasChild .layout{
-  border-top:2px solid black;
+.taskBoxDiv .layout .milestone.active {
+  display: block;
 }
 
-.taskBoxDiv .taskProgress{
-  height:5px;
-  position:absolute;
+.taskBoxDiv.hasChild .layout {
+  border-top: 2px solid black;
+}
+
+.taskBoxDiv .taskProgress {
+  height: 5px;
+  position: absolute;
   background: #22c55e;
   height: 6px;
   border-radius: 4px;
 }
 
-.taskBoxDiv .layout.extDep{
-  background-image:url(res/hasExternalDeps.png);
+.taskBoxDiv .layout.extDep {
+  background-image: url(res/hasExternalDeps.png);
 }
 
-
-.taskLabel{
-  position:absolute;
-  height:28px;
-  color:black;
-  text-align:right;
-  padding-right:5px;
-  overflow:hidden;
-  left:-200px;
-  width:195px;
-  white-space:nowrap;
+.taskLabel {
+  position: absolute;
+  height: 28px;
+  color: black;
+  text-align: right;
+  padding-right: 5px;
+  overflow: hidden;
+  left: -200px;
+  width: 195px;
+  white-space: nowrap;
 }
-
 
 .taskDepLine {
   border: 1px solid #9999ff;
@@ -493,49 +494,51 @@ button:hover {
   position: absolute;
 }
 
-
-.taskEditRow,.emptyRow {
-  height:30px;
+.taskEditRow,
+.emptyRow {
+  height: 30px;
 }
 
-.taskEditRow input, .columnWidthTest{
+.taskEditRow input,
+.columnWidthTest {
   border: 0 none;
   font-size: 14px;
   height: 20px;
   margin: 0;
-  padding:0;
+  padding: 0;
   outline: 0;
   width: 100%;
   border-radius: 0;
   vertical-align: text-bottom;
 }
 
-.taskEditRow input[type=checkbox]{
-  transform:scale(.7);
-  width:15px;
+.taskEditRow input[type="checkbox"] {
+  transform: scale(0.7);
+  width: 15px;
   height: 15px;
 }
 
-.columnWidthTest{
+.columnWidthTest {
   width: auto;
 }
 
-.taskEditRow input:focus{
+.taskEditRow input:focus {
   font-weight: 600;
 }
-.taskEditRow input{
+.taskEditRow input {
   background-color: transparent;
 }
 
-.taskEditRow.rowSelected td{
-  background-color:rgb(234, 248, 255);
+.taskEditRow.rowSelected td {
+  background-color: rgb(234, 248, 255);
 }
 
-
-.isGanttList .taskEditRow:nth-child(odd), .assigEditRow:nth-child(odd){
+.isGanttList .taskEditRow:nth-child(odd),
+.assigEditRow:nth-child(odd) {
   background-color: #ffffff;
 }
-.isGanttList .taskEditRow:nth-child(even), .assigEditRow:nth-child(even){
+.isGanttList .taskEditRow:nth-child(even),
+.assigEditRow:nth-child(even) {
   background-color: #ffffff;
 }
 
@@ -543,75 +546,75 @@ button:hover {
   color: #c0c0c0;
 } */
 
-.taskStatusBox{
-  position:absolute;
+.taskStatusBox {
+  position: absolute;
   /*width:100px;*/
-  height:26px;
-  border:1px solid #a0a0a0;
-  background-color:#fff;
-  margin-top:-21px;
-  margin-left:-2px;
+  height: 26px;
+  border: 1px solid #a0a0a0;
+  background-color: #fff;
+  margin-top: -21px;
+  margin-left: -2px;
   padding: 4px;
   z-index: 100;
 }
-.taskStatus{
-  width:15px;
-  height:15px;
-  display:inline-block;
+.taskStatus {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
   text-indent: 0;
-  position:relative;
+  position: relative;
   box-shadow: none;
   border-radius: 50%;
-  border:0;
+  border: 0;
   /* cursor: pointer; */
 }
-.taskStatus[status=STATUS_ACTIVE] {
-    width: 6px;
-    border-radius: 10px;
-    height: 25px;
-    background-color: #85C98C;
-    color: #fff;
-}
-.taskStatus[status=STATUS_DONE]{
-  background-color: #6EBEF4;
-  color:#000;
+.taskStatus[status="STATUS_ACTIVE"] {
+  width: 6px;
+  border-radius: 10px;
   height: 25px;
-    border-radius: 10px;
-    width: 6px;
+  background-color: #85c98c;
+  color: #fff;
 }
-.taskStatus[status=STATUS_FAILED]{
-  background-color: #763A96;
+.taskStatus[status="STATUS_DONE"] {
+  background-color: #6ebef4;
+  color: #000;
+  height: 25px;
+  border-radius: 10px;
+  width: 6px;
+}
+.taskStatus[status="STATUS_FAILED"] {
+  background-color: #763a96;
   color: #fff;
   height: 25px;
-    border-radius: 10px;
-    width: 6px;
+  border-radius: 10px;
+  width: 6px;
 }
-.taskStatus[status=STATUS_SUSPENDED]{
+.taskStatus[status="STATUS_SUSPENDED"] {
   height: 25px;
-    border-radius: 10px;
-    width: 6px;
-    background-color: #EECC02;
-    color: #000;
+  border-radius: 10px;
+  width: 6px;
+  background-color: #eecc02;
+  color: #000;
 }
-.taskStatus[status=STATUS_WAITING]{
-  background-color:#F79136;
-  color:#000;
+.taskStatus[status="STATUS_WAITING"] {
+  background-color: #f79136;
+  color: #000;
 }
-.taskStatus[status=STATUS_UNDEFINED]{
+.taskStatus[status="STATUS_UNDEFINED"] {
   background-color: #dededf;
-  color:#000;
+  color: #000;
 }
-.taskStatus.selected{
-  border:#666 2px solid;
+.taskStatus.selected {
+  border: #666 2px solid;
 }
 
-select.taskStatus{
+select.taskStatus {
   width: auto;
   height: auto;
   border-radius: 2px;
 }
 
-.assigsTableWrapper{
+.assigsTableWrapper {
   position: relative;
   height: 150px;
   overflow: auto;
@@ -626,35 +629,39 @@ select.taskStatus{
   user-select: none;
 }
 
-
-.exp-controller{
-  display:inline-block;
-  width:16px;
-  height:16px;
+.exp-controller {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
   position: relative;
   top: 2px;
   margin-left: -18px;
 }
 
-.isParent .exp-controller{
+.isParent .exp-controller {
   background-image: url(res/toggle_collapse.png);
 }
 
-.isParent.collapsed .exp-controller{
+.isParent.collapsed .exp-controller {
   cursor: pointer;
   background-image: url(res/toggle-expand.png);
 }
 
-.ui-resizable-helper { border: 1px dotted #00F;  }
-.ui-resizable-e, .ui-resizable-w {width: 5px;}
-.ui-draggable{
-  cursor:move;
+.ui-resizable-helper {
+  border: 1px dotted #00f;
+}
+.ui-resizable-e,
+.ui-resizable-w {
+  width: 5px;
+}
+.ui-draggable {
+  cursor: move;
 }
 
 /*--------------------------------------------------- SVG --------------------------------------------------*/
-.ganttSVGBox{
+.ganttSVGBox {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   height: 100%;
   background-color: transparent;
@@ -662,51 +669,50 @@ select.taskStatus{
   overflow-y: hidden; /*IE11 bug*/
 }
 
-.taskBoxSVG{
+.taskBoxSVG {
   overflow: visible;
 }
 
-.taskBoxSVG .taskLayout{
-  stroke-width:0;
-  stroke:#999;
+.taskBoxSVG .taskLayout {
+  stroke-width: 0;
+  stroke: #999;
 }
 
-.taskLinkPathSVG{
+.taskLinkPathSVG {
   stroke: rgba(47, 151, 198, 1);
   /*stroke:#9999ff;*/
-  stroke-width:2.5px;
-  fill:none;
-  cursor:pointer;
+  stroke-width: 2.5px;
+  fill: none;
+  cursor: pointer;
 }
 
-.ganttLinesSVG{
-  fill:transparent;
-  stroke-width:1;
-  stroke:#eee;
+.ganttLinesSVG {
+  fill: transparent;
+  stroke-width: 1;
+  stroke: #eee;
 }
 
-.isGanttList .ganttLinesSVG:nth-child(even){
-  fill:transparent;
-  stroke-width:1;
-  stroke:#fff;
-
+.isGanttList .ganttLinesSVG:nth-child(even) {
+  fill: transparent;
+  stroke-width: 1;
+  stroke: #fff;
 }
-.isGanttList  .ganttLinesSVG:nth-child(odd){
-  fill:transparent;
-  stroke-width:1;
-  stroke:#eee;
+.isGanttList .ganttLinesSVG:nth-child(odd) {
+  fill: transparent;
+  stroke-width: 1;
+  stroke: #eee;
 }
 
-.ganttLinesSVG.rowSelected{
+.ganttLinesSVG.rowSelected {
   fill: rgb(234, 248, 255) !important;
   /*fill: rgba(255, 255, 153, 0.50) !important;*/
 }
 
-.ganttTodaySVG{
-  stroke-width:2px;
-  stroke:#e06671;
-  stroke-linecap:"round";
-  stroke-dasharray:2,2;
+.ganttTodaySVG {
+  stroke-width: 2px;
+  stroke: #e06671;
+  stroke-linecap: "round";
+  stroke-dasharray: 2, 2;
 }
 
 .colorByStatus .taskStatusSVG[status="STATUS_ACTIVE"] rect:nth-of-type(2) {
@@ -745,30 +751,29 @@ select.taskStatus{
   }
 }
 
-
-.colorByStatus .taskStatusSVG[status=STATUS_ACTIVE]{
-  fill: #3BBF67;
+.colorByStatus .taskStatusSVG[status="STATUS_ACTIVE"] {
+  fill: #3bbf67;
 }
-.colorByStatus .taskStatusSVG[status=STATUS_DONE]{
-  fill: #6EBEF4;
+.colorByStatus .taskStatusSVG[status="STATUS_DONE"] {
+  fill: #6ebef4;
 }
-.colorByStatus .taskStatusSVG[status=STATUS_FAILED]{
-  fill: #763A96;
+.colorByStatus .taskStatusSVG[status="STATUS_FAILED"] {
+  fill: #763a96;
 }
-.colorByStatus .taskStatusSVG[status=STATUS_SUSPENDED]{
+.colorByStatus .taskStatusSVG[status="STATUS_SUSPENDED"] {
   fill: #f9c154;
 }
-.colorByStatus .taskStatusSVG[status=STATUS_UNDEFINED]{
+.colorByStatus .taskStatusSVG[status="STATUS_UNDEFINED"] {
   fill: #dededf;
 }
-.colorByStatus .taskStatusSVG[status=STATUS_UNDEFINED] .taskLayout{
+.colorByStatus .taskStatusSVG[status="STATUS_UNDEFINED"] .taskLayout {
   stroke: #ccc;
-  stroke-width:1;
+  stroke-width: 1;
 }
 
-.colorByStatus .taskStatusSVG[status=STATUS_DONE] .textPerc,
-.colorByStatus .taskStatusSVG[status=STATUS_ACTIVE] .textPerc,
-.colorByStatus .taskStatusSVG[status=STATUS_FAILED] .textPerc{
+.colorByStatus .taskStatusSVG[status="STATUS_DONE"] .textPerc,
+.colorByStatus .taskStatusSVG[status="STATUS_ACTIVE"] .textPerc,
+.colorByStatus .taskStatusSVG[status="STATUS_FAILED"] .textPerc {
   fill: #fff;
 }
 
@@ -780,85 +785,83 @@ select.taskStatus{
   cursor: ew-resize;
 }
 
-.linkHandleSVG{
-  display:none;
-  stroke:transparent;
-  stroke-width:5;
+.linkHandleSVG {
+  display: none;
+  stroke: transparent;
+  stroke-width: 5;
   fill: rgba(47, 151, 198, 0.7);
   cursor: pointer;
 }
 
-.linkLineSVG{
-  stroke-width:5px;
+.linkLineSVG {
+  stroke-width: 5px;
   stroke: rgba(47, 151, 198, 0.7);
-  stroke-linecap:"round";
-  opacity: .5;
+  stroke-linecap: "round";
+  opacity: 0.5;
 }
 
-.linkOnProgress .deSVG.taskBoxSVG  {
-  cursor:cell;
+.linkOnProgress .deSVG.taskBoxSVG {
+  cursor: cell;
 }
 
-.taskBoxSVG.linkOver .taskLayout{
-  stroke-width:1px;
-  stroke:rgba(47, 151, 198, 0.7);
+.taskBoxSVG.linkOver .taskLayout {
+  stroke-width: 1px;
+  stroke: rgba(47, 151, 198, 0.7);
   opacity: 1;
 }
 
 .taskLabelSVG {
   stroke: none;
-  fill:#999;
+  fill: #999;
   font-size: 12px;
 }
 
-.critical .taskLinkPathSVG{
-  stroke:red;
+.critical .taskLinkPathSVG {
+  stroke: red;
 }
 
-.taskBoxSVG.critical .taskLayout{
-  stroke:red;
+.taskBoxSVG.critical .taskLayout {
+  stroke: red;
 }
 
-.focused .taskLinkPathSVG{
-  stroke-width:5px;
+.focused .taskLinkPathSVG {
+  stroke-width: 5px;
   stroke: rgba(47, 151, 198, 0.7);
 }
 
-.taskBoxSVG.focused .taskLayout{
-  stroke-width:3px;
+.taskBoxSVG.focused .taskLayout {
+  stroke-width: 3px;
   stroke: rgba(47, 151, 198, 0.7);
 }
 
-.taskBoxSVG.critical .taskLayout{
-  stroke-width:3px;
+.taskBoxSVG.critical .taskLayout {
+  stroke-width: 3px;
   stroke: rgba(255, 0, 0, 0.7);
 }
 
-
-
 /*--------------------------------------------------- RESOURCE ADD  --------------------------------------------------*/
-.ganttAddResource{
+.ganttAddResource {
   position: absolute;
   width: 660px;
   height: 300px;
   border: 1px solid red;
   background-color: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  top:120px;
-  left:70px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  top: 120px;
+  left: 70px;
   z-index: 200;
   padding: 10px;
 }
 
-.ganttAddResource tr.isCompany{
-  display:none;
+.ganttAddResource tr.isCompany {
+  display: none;
 }
 
-.ganttAddResource.isCompany tr.isCompany{
-  display:table-row;
+.ganttAddResource.isCompany tr.isCompany {
+  display: table-row;
 }
-.ganttAddResource.isCompany tr.isPerson{
-  display:none;
+.ganttAddResource.isCompany tr.isPerson {
+  display: none;
 }
 .ganttAddResourceBG {
   position: absolute;
@@ -866,19 +869,17 @@ select.taskStatus{
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, .3);
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 200;
 }
 
-
 /*---------------------------------#LOG_CHANGES_CONTAINER --------------------------------------------*/
-#LOG_CHANGES_CONTAINER{
+#LOG_CHANGES_CONTAINER {
   display: none;
   width: 300px;
-  top:-130px;
-  margin-left: -35px
+  top: -130px;
+  margin-left: -35px;
 }
-
 
 .userProfile {
   font-size: 16px;
@@ -901,7 +902,8 @@ select.taskStatus{
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  margin: 0;padding: 0;
+  margin: 0;
+  padding: 0;
   vertical-align: middle;
 }
 
@@ -910,7 +912,7 @@ select.taskStatus{
   padding: 1px;
   width: 27px;
   height: 27px;
-  border: 1px solid #dedede
+  border: 1px solid #dedede;
 }
 
 .taskEditRow:hover td {
@@ -922,19 +924,16 @@ select.taskStatus{
 
 /* Large screens */
 
-@media only screen and (max-width : 1260px) {
-
+@media only screen and (max-width: 1260px) {
   .ganttButtonBar .button span.teamworkIcon {
     font-size: 130%;
   }
   .userLine {
     display: none;
   }
-
 }
 
-@media only screen and (min-width : 1261px) and (max-width : 1320px) {
-
+@media only screen and (min-width: 1261px) and (max-width: 1320px) {
   .ganttButtonBar .button span.teamworkIcon {
     font-size: 130%;
   }
@@ -943,36 +942,34 @@ select.taskStatus{
     font-size: 100%;
     padding: 3px 9px 6px;
     margin-right: 5px;
-    margin-bottom: 5px
+    margin-bottom: 5px;
   }
 
   .userLine {
     display: none;
   }
-
 }
 
-@media only screen and (max-width : 1160px) {
-
+@media only screen and (max-width: 1160px) {
   .userProfile {
     float: none;
     position: absolute;
-    top:0;
+    top: 0;
     right: 10px;
   }
 
   .userProfile .teamworkIcon {
     color: rgb(255, 255, 255);
   }
-  .userProfile .ganttButtonSeparator, .userProfile .avatar {
+  .userProfile .ganttButtonSeparator,
+  .userProfile .avatar {
     border-color: rgb(127, 154, 170);
   }
-
 }
 
 /* Ipad */
 
-@media only screen and  (min-width: 768px) and (max-width: 1024px){
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   .ganttButtonSeparator {
     margin-left: 2px;
     padding-right: 6px;
@@ -1001,9 +998,44 @@ select.taskStatus{
   height: 40px;
   /* flex-shrink: 0; */
 }
-.controller-text{
+.controller-text {
   margin-left: 5px;
 }
-/*my code*/
 
+/*left table alignment*/
+.gdfTable th:nth-child(1),
+.gdfTable td:nth-child(1) {
+  width: 5% !important;
+}
 
+.gdfTable th:nth-child(2),
+.gdfTable td:nth-child(2) {
+  width: 50% !important;
+}
+/* .gdfTable th:nth-child(2),
+.gdfTable td:nth-child(2) {
+    width: auto !important;
+} */
+
+.gdfTable th:nth-child(3),
+.gdfTable td:nth-child(3) {
+  width: 15% !important;
+}
+
+.gdfTable th:nth-child(4),
+.gdfTable td:nth-child(4) {
+  width: 15% !important;
+}
+
+.gdfTable th:nth-child(5),
+.gdfTable td:nth-child(5) {
+  width: 10% !important;
+}
+
+.gdfTable th:nth-child(6),
+.gdfTable td:nth-child(6) {
+  width: 10% !important;
+}
+.left-side{
+  align-items: center;
+}

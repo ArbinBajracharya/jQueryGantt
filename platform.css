@@ -56,9 +56,9 @@ h1 {
 }
 
 h2 {
-  font-size: 28px;
+  font-size: 20px;
   color: #34495e;
-  font-weight: normal;
+  font-weight: 500;
   margin: 0 0 10px 0
 }
 
@@ -279,13 +279,14 @@ TH, .tableHeader {
 
 .ganttTaskEditor .formElements,
 .resourceEditor .formElements {
-  background-color: #F5F5F5;
-  border-color: #CECECE
+  /* background-color: #F5F5F5; */
+  border-color: #CECECE;
+  outline: none;
 }
-.ganttTaskEditor span{
+/* .ganttTaskEditor span{
   color: red;
   padding: 4px;
-}
+} */
 
 table .resRow td, table .assigEditRow td {
   border-bottom: 1px solid #cecece;
@@ -487,10 +488,10 @@ Buttons
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* border: 1px solid rgba(0, 0, 0, 0.2); */
   padding: 5px 12px 8px;
-  margin-bottom: 10px;
-  margin-right: 10px;
+  /* margin-bottom: 10px;
+  margin-right: 10px; */
   text-align: center;
   -webkit-transition: background-color 500ms ease-out 1s;
   -moz-transition: background-color 500ms ease-out 1s;
@@ -811,7 +812,7 @@ iframe#bwinPopup {
   border: 1px solid rgba(127, 127, 127, 0.3);
   background-color:#fff;
   margin:auto;
-  padding: 30px 30px;
+  padding: 20px;
   border-radius: 5px;
 }
 
@@ -822,8 +823,8 @@ iframe#bwinPopup {
   height: 20px;
   text-align: center;
   line-height: 20px;
-  right: 15px;
-  top:15px;
+  right: 45px;
+    top: 45px;
 }
 
 .modalPopup.black .bwinPopupd .popUpClose{
@@ -851,3 +852,101 @@ iframe#bwinPopup {
 }
 
 
+/*my code*/
+.formElements:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #3b82f6;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+/* .taskData span i{
+  padding: 10px;
+  background-color: blue;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+} */
+
+.ganttTaskEditor table {
+  width: 100%;
+}
+
+.ganttTaskEditor td[colspan="2"] {
+  width: 50%;
+}
+.popup-header{
+  padding: 10px;
+  background-color: #F8F3ED;
+  border-radius: 5px;
+  /* box-shadow: 0 8px 20px rgba(0,0,0,0.2); */
+}
+h2.taskData {
+    margin: 0;
+}
+.task-icon i{
+  padding: 6px;
+  border-radius: 3px;
+  background-color: grey;
+  color: #eee;
+}
+.task-icon{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.popup-footer{
+  padding: 10px;
+  background-color: #F8F3ED;
+  border-radius: 5px;
+}
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #f8f3ed;
+  /* border-bottom: 1px solid #e5e7eb; */
+  border-radius: 5px;
+}
+
+.task-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-icon i {
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #3b82f6;
+  color: #fff;
+  font-size: 14px;
+}
+
+h2.taskData {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+.popup-footer .button.save{
+  padding: 7px 14px;
+  background-color: #004D96;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.popup-footer .button.cancel{
+  padding: 7px 14px;
+  background-color: #e5e7eb;
+  font-size: 14px;
+  font-weight: 400;
+  color: #374151;
+  /* border: 1px solid #d1d5db; */
+}
+.popup-footer .button.cancel:hover {
+  background-color: #d1d5db;
+  color: #111827;
+}

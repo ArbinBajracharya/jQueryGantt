@@ -234,7 +234,7 @@
     ></div>
 
     <!-- Modal Overlay -->
-    <div id="taskModal" class="modal-overlay" style="display: none">
+    <!-- <div id="taskModal" class="modal-overlay" style="display: none">
       <div class="modal-box">
         <div class="modal-header">
           <h2>Add Task</h2>
@@ -275,7 +275,7 @@
           <button class="btn">Save</button>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <style>
       .resEdit {
@@ -791,12 +791,6 @@
     <div class="buttons">
 
       <div class="left-side">
-      <select>
-        <option value="1">1 year</option>
-        <option value="3">3 year</option>
-        <option value="5">5 year</option>
-        <option value="7">7 year</option>
-      </select>
       <button onclick="$('#workSpace').trigger('print.gantt');return false;" class="button textual icon " title="Print"><span class="teamworkIcon">p</span></button>
           <span class="ganttButtonSeparator"></span>
       <button onclick="$('#workSpace').trigger('zoomMinus.gantt'); return false;" class="button textual icon " title="zoom out"><span class="teamworkIcon">)</span></button>
@@ -900,10 +894,15 @@
       <div class="__template__" type="TASK_ADD">
         <!--
   <div class="ganttTaskEditor">
+    <div class="popup-header">
+      <div class="task-icon">
+        <span><i class="fa-solid fa-list-check"></i></span>
     <h2 class="taskData">Add Task</h2>
+      </div>
+    </div>
     <table  cellspacing="1" cellpadding="5" width="100%" class="taskData table" border="0">
       <tr>
-        <td colspan="5" valign="top"><label for="name" class="required">Name<span>*</span></label><br><input type="text" name="name" id="name"class="formElements" autocomplete='off' maxlength=255 style='width:100%' value="" required="true" oldvalue="1"></td>
+        <td colspan="5" valign="top"><label for="name" class="required">Name<span>*</span></label><br><input type="text" name="name" id="name"class="formElements" autocomplete='off' maxlength=255 style='width:92%' value="" required="true" oldvalue="1"></td>
       </tr>
 
       <tr class="dateRow">
@@ -923,7 +922,9 @@
           <label>Progress</label><br>
           <input type="text" name="progress" id="progress" size="7" class="formElements validated percentile" autocomplete="off" maxlength="255" value="" oldvalue="1" entrytype="PERCENTILE">
         </td>
-        <td  colspan="2">
+      </tr>
+      <tr>
+         <td  colspan="2">
           <label for="status" class=" ">Status</label><br>
           <select id="status" name="status" class="taskStatus" status="(#=obj.status#)"  onchange="$(this).attr('STATUS',$(this).val());">
             <option value="STATUS_UNDEFINED" class="taskStatus" status="STATUS_UNDEFINED" >Select a Status</option>
@@ -937,13 +938,17 @@
       <tr>
         <td colspan="5">
           <label for="description">Description</label><br>
-          <textarea rows="3" cols="30" id="description" name="description" class="formElements" style="width:100%"></textarea>
+          <textarea rows="3" cols="30" id="description" name="description" class="formElements" style="width:92%"></textarea>
         </td>
       </tr>
     </table>
-    <div style="text-align: right; padding-top: 20px">
-      <span id="saveButton" class="button first" onClick="$(this).trigger('addFullEditor.gantt');">Save</span>
+    <div class="popup-footer">
+    <div style="text-align: right">
+      <span id="saveButton" class="button save" onClick="$(this).trigger('addFullEditor.gantt');">Save Changes</span>
+      <span id="saveButton" class="button cancel" onClick="$(this).trigger('addFullEditor.gantt');">Cancel</span>
     </div>
+  </div>
+  
   </div> -->
       </div>
 

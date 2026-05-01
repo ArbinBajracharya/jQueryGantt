@@ -848,5 +848,5 @@ GridEditor.prototype.openFullAdd = function (task, editOnlyAssig) {
   });
 
   // Open popup modal only
-  createModalPopup(800, 450).append(taskEditor);
+  createModalPopup(600, 450).append(taskEditor);
 };
