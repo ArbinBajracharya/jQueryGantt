@@ -1036,13 +1036,6 @@ textarea:focus {
 }
 
 
-tr:nth-child(3) td:first-child {
-  width: 30%;
-}
-tr:nth-child(3) td:last-child {
-  width: 70%;
-}
-
 textarea {
   resize: none;
   min-height: 70px;
