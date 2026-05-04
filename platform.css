@@ -812,7 +812,7 @@ iframe#bwinPopup {
   border: 1px solid rgba(127, 127, 127, 0.3);
   background-color:#fff;
   margin:auto;
-  padding: 20px;
+  padding: 10px;
   border-radius: 5px;
 }
 
@@ -823,8 +823,8 @@ iframe#bwinPopup {
   height: 20px;
   text-align: center;
   line-height: 20px;
-  right: 45px;
-    top: 45px;
+  right: 25px;
+    top: 30px;
 }
 
 .modalPopup.black .bwinPopupd .popUpClose{
@@ -938,15 +938,147 @@ h2.taskData {
   font-weight: 400;
 }
 
-.popup-footer .button.cancel{
-  padding: 7px 14px;
-  background-color: #e5e7eb;
-  font-size: 14px;
-  font-weight: 400;
-  color: #374151;
-  /* border: 1px solid #d1d5db; */
+
+
+/* MODAL CONTAINER */
+.ganttTaskEditor {
+  max-width: 620px;
+  /* margin: 40px auto; */
+  background: #fff;
+  border-radius: 10px;
+  /* box-shadow: 0 12px 32px rgba(0,0,0,0.15); */
+  overflow: hidden;
 }
-.popup-footer .button.cancel:hover {
-  background-color: #d1d5db;
-  color: #111827;
+
+/* HEADER */
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.task-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-icon i {
+  padding: 8px;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: #fff;
+}
+
+h2.taskData {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+.ganttTaskEditor table {
+  width: 100%;
+  padding: 20px;
+  border-collapse: separate;
+  border-spacing: 0 14px; 
+}
+
+
+.ganttTaskEditor td {
+  /* padding: 0 8px; */
+  vertical-align: top;
+}
+
+.ganttTaskEditor td[colspan="5"] {
+  padding: 0;
+}
+
+label {
+  font-family: Poppins;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  display: block;
+  margin-bottom: 6px;
+}
+
+
+.formElements,
+input,
+select,
+textarea {
+  font-family: Poppins;
+  width: 100%;
+  padding: 9px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  transition: 0.2s ease;
+}
+
+/* FOCUS */
+.formElements:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+  outline: none;
+}
+
+.dateRow td {
+  width: 40%;
+}
+
+
+tr:nth-child(3) td:first-child {
+  width: 30%;
+}
+tr:nth-child(3) td:last-child {
+  width: 70%;
+}
+
+textarea {
+  resize: none;
+  min-height: 70px;
+}
+
+.popup-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+
+.button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button.save {
+  background: #2563eb;
+  color: #fff;
+}
+
+.button.save:hover {
+  background: #1d4ed8;
+}
+
+.button.cancel {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.button.cancel:hover {
+  background: #d1d5db;
 }
