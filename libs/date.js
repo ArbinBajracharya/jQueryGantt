@@ -1,15 +1,3 @@
-/**
- * Copyright (c)2005-2009 Matt Kruse (javascripttoolbox.com)
- * Dual licensed under the MIT and GPL licenses.
- * This basically means you can use this code however you want for
- */
-/*
-Date functions
-
-These functions are used to parse, format, and manipulate Date objects.
-See documentation and examples at http://www.JavascriptToolbox.com/lib/date/
-
-*/
 Date.$VERSION = 1.02;
 
 // Utility function to append a 0 to single-digit numbers

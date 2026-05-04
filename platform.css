@@ -75,6 +75,13 @@ h4 {
   color: #617777;
   margin: 0
 }
+.del-btn-color{
+  background-color: #B61E2D !important;
+  }
+
+.add-btn-color{
+  background-color: #004D96 !important;
+}
 
 #savingMessage {
   background-color: #E3EDED;
@@ -854,7 +861,6 @@ iframe#bwinPopup {
 
 /*my code*/
 .formElements:focus,
-input:focus,
 select:focus,
 textarea:focus {
   border-color: #3b82f6;
@@ -931,14 +937,6 @@ h2.taskData {
   font-weight: 600;
   margin: 0;
 }
-.popup-footer .button.save{
-  padding: 7px 14px;
-  background-color: #004D96;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-
 
 /* MODAL CONTAINER */
 .ganttTaskEditor {
@@ -1023,7 +1021,6 @@ textarea {
 
 /* FOCUS */
 .formElements:focus,
-input:focus,
 select:focus,
 textarea:focus {
   border-color: #3b82f6;
@@ -1052,15 +1049,10 @@ textarea {
 
 
 .button {
-  padding: 8px 16px;
+  padding: 8px 32px;
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
-}
-
-.button.save {
-  background: #2563eb;
-  color: #fff;
 }
 
 .button.save:hover {
@@ -1075,3 +1067,24 @@ textarea {
 .button.cancel:hover {
   background: #d1d5db;
 }
+/*my code*/
+
+.form{
+  padding: 10px;
+}
+.three-field{
+  display: flex;
+  justify-content: space-between;
+}
+.name-section, .description-section, .three-field, .progress-status{
+  margin-bottom: 10px;
+}
+.progress-status {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+ .end-date, .start-date, .status-part{
+  width: 40%;
+ }
