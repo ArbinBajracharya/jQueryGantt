@@ -829,7 +829,7 @@
         <!--
   <tr id="tid_(#=obj.id#)" taskId="(#=obj.id#)" class="taskEditRow (#=obj.isParent()?'isParent':''#) (#=obj.collapsed?'collapsed':''#)" level="(#=level#)">
     <th class="gdfCell edit" align="middle" style="cursor:pointer;"><span class="taskRowIndex">(#=obj.getRow()+1#)</span> </th>
-    <td class="gdfCell indentCell" style="padding-left:0;">
+    <td class="gdfCell edit indentCell" style="padding-left:0;">
       <div class="nameWithStatus">
         <div class="taskStatus cvcColorSquare" status="(#=obj.status#)"></div>
         <div class="cellInner"><input type="text" name="name" value="(#=obj.name#)" placeholder="name"></div>
@@ -931,9 +931,8 @@
         <div class="status-part">
           <label for="status" class=" ">Status</label>
           <select id="status" name="status" class="" status="(#=obj.status#)"  onchange="$(this).attr('STATUS',$(this).val());">
-            <option value="STATUS_UNDEFINED" class="taskStatus" status="STATUS_UNDEFINED" >Select a Status</option>
+            <option value="STATUS_UNDEFINED" class="taskStatus" >Not Started</option>
             <option value="STATUS_ACTIVE" class="taskStatus"  >Inprogress</option>
-            <option value="STATUS_WAITING" class="taskStatus" >Not Started</option>
             <option value="STATUS_DONE" class="taskStatus" >Completed</option>
             <option value="STATUS_FAILED" class="taskStatus"  >Block</option>
           </select>
@@ -1001,9 +1000,8 @@
         <div class="status-part">
           <label for="status" class=" ">Status</label>
           <select id="status" name="status" class="" status="(#=obj.status#)"  onchange="$(this).attr('STATUS',$(this).val());">
-            <option value="STATUS_UNDEFINED" class="taskStatus" status="STATUS_UNDEFINED" >Select a Status</option>
+            <option value="STATUS_UNDEFINED" class="taskStatus" >Not Started</option>
             <option value="STATUS_ACTIVE" class="taskStatus"  >Inprogress</option>
-            <option value="STATUS_WAITING" class="taskStatus" >Not Started</option>
             <option value="STATUS_DONE" class="taskStatus" >Completed</option>
             <option value="STATUS_FAILED" class="taskStatus"  >Block</option>
           </select>

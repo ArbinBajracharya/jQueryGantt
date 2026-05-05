@@ -224,10 +224,12 @@ Ganttalendar.prototype.drawTask = function (task) {
           $(".ganttSVGBox .focused").removeClass("focused");
         })
 
-      }).dblclick(function () {
-        if (self.master.permissions.canSeePopEdit)
-          self.master.editor.openFullEditor(task,false);
-      }).mouseenter(function () {
+      })
+      // .dblclick(function () {
+      //   if (self.master.permissions.canSeePopEdit)
+      //     self.master.editor.openFullEditor(task,false);
+      // })
+      .mouseenter(function () {
         //bring to top
         var el = $(this);
         if (!self.linkOnProgress) {
@@ -261,40 +263,46 @@ Ganttalendar.prototype.drawTask = function (task) {
           var task = self.master.getTask(taskbox.attr("taskid"));
           var s = Math.round((parseFloat(taskbox.attr("x")) / self.fx) + self.startMillis);
           var e = Math.round(((parseFloat(taskbox.attr("x")) + parseFloat(taskbox.attr("width"))) / self.fx) + self.startMillis);
-          self.master.beginTransaction();
-          self.master.moveTask(task, new Date(s));
-          self.master.endTransaction();
 
-          var payload = {
-            id: task.id,
-            duration: task.duration,
-            start: new Date(new Date(s).setDate(new Date(s).getDate() + 1)).toISOString().split("T")[0],
-            end: new Date(e).toISOString().split("T")[0]
-          };
+          if (confirm("Are you sure you want to update this task?")) {
+            self.master.beginTransaction();
+            self.master.moveTask(task, new Date(s));
+            self.master.endTransaction();
 
-          $.ajax({
-            url: "backend/crud/editTaskDate.php",
-            type: "POST",
-            data: payload,
-            dataType: "json",
+            var payload = {
+              id: task.id,
+              duration: task.duration,
+              start: new Date(new Date(s).setDate(new Date(s).getDate() + 1)).toISOString().split("T")[0],
+              end: new Date(e).toISOString().split("T")[0]
+            };
 
-            success: function (response) {
+            
+            $.ajax({
+              url: "backend/crud/editTaskDate.php",
+              type: "POST",
+              data: payload,
+              dataType: "json",
 
-              if (response.success) {
+              success: function (response) {
 
-                closeBlackPopup();
+                if (response.success) {
 
-                alert("Task updated successfully");
-              } else {
-                alert(response.message || "Update failed");
+                  closeBlackPopup();
+
+                  alert("Task updated successfully");
+                } else {
+                  alert(response.message || "Update failed");
+                }
+              },
+
+              error: function (xhr, status, error) {
+                console.log("AJAX Error:", error);
+                alert("Server error while updating task");
               }
-            },
-
-            error: function (xhr, status, error) {
-              console.log("AJAX Error:", error);
-              alert("Server error while updating task");
-            }
-          });
+            });
+          } else {
+            alert("Update cancelled");
+          }
         },
         startResize:function (e) {
           $(".ganttSVGBox .focused").removeClass("focused");
@@ -332,40 +340,45 @@ Ganttalendar.prototype.drawTask = function (task) {
             en = task.end;
           }
 
-          self.master.beginTransaction();
-          self.master.changeTaskDates(task, new Date(st), new Date(en));
-          self.master.endTransaction();
+          if (confirm("Are you sure you want to update this task?")) {
+            self.master.beginTransaction();
+            self.master.changeTaskDates(task, new Date(st), new Date(en));
+            self.master.endTransaction();
 
-          var payload = {
-            id: task.id,
-            duration: task.duration,
-            start: new Date(new Date(st).setDate(new Date(st).getDate() + 1)).toISOString().split("T")[0],
-            end: new Date(en).toISOString().split("T")[0]
-          };
+            var payload = {
+              id: task.id,
+              duration: task.duration,
+              start: new Date(new Date(st).setDate(new Date(st).getDate() + 1)).toISOString().split("T")[0],
+              end: new Date(en).toISOString().split("T")[0]
+            };
 
-          $.ajax({
-            url: "backend/crud/editTaskDate.php",
-            type: "POST",
-            data: payload,
-            dataType: "json",
+            $.ajax({
+              url: "backend/crud/editTaskDate.php",
+              type: "POST",
+              data: payload,
+              dataType: "json",
 
-            success: function (response) {
+              success: function (response) {
 
-              if (response.success) {
+                if (response.success) {
 
-                closeBlackPopup();
+                  closeBlackPopup();
 
-                alert("Task updated successfully");
-              } else {
-                alert(response.message || "Update failed");
+                  alert("Task updated successfully");
+                } else {
+                  alert(response.message || "Update failed");
+                }
+              },
+
+              error: function (xhr, status, error) {
+                console.log("AJAX Error:", error);
+                alert("Server error while updating task");
               }
-            },
-
-            error: function (xhr, status, error) {
-              console.log("AJAX Error:", error);
-              alert("Server error while updating task");
-            }
-          });
+            });
+          } else {
+            window.location.reload();
+            alert("Update cancelled");
+          }
         }
       });
 

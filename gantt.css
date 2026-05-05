@@ -237,7 +237,7 @@ button:hover {
   white-space: nowrap;
   width: auto !important;
 }
-
+taskStatus
 /* -------------------------------------- GANTT -----------------------------------*/
 
 .ganttTable {
@@ -601,8 +601,10 @@ button:hover {
   color: #000;
 }
 .taskStatus[status="STATUS_UNDEFINED"] {
-  background-color: #dededf;
+  background-color: #DEDEDF;
   color: #000;
+  border-radius: 10px;
+  width: 6px;
 }
 .taskStatus.selected {
   border: #666 2px solid;
