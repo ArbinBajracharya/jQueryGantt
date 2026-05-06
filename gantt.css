@@ -1,3 +1,35 @@
+@font-face {
+  font-family: "TeamworkRegular";
+  src: url("res/icons.eot?5qjga5");
+  src:
+    url("res/icons.eot?#iefix5qjga5") format("embedded-opentype"),
+    url("res/icons.woff?5qjga5") format("woff"),
+    url("res/icons.ttf?5qjga5") format("truetype"),
+    url("res/icons.svg?5qjga5#icons") format("svg");
+  font-weight: normal !important;
+  font-style: normal;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea {
+  font-family: Poppins;
+  width: 100%;
+  padding: 9px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  transition: 0.2s ease;
+}
+
 body {
   overflow: hidden;
   font-family: "Poppins", Arial, sans-serif;
@@ -24,11 +56,174 @@ button {
 button:hover {
   background: #4338ca;
 }
-/* #workSpace {
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  background: #fff;
-} */
+
+/* Platform css */
+
+.button {
+  display: inline-block;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #34495e;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  /* border: 1px solid rgba(0, 0, 0, 0.2); */
+  padding: 8px 32px;
+  text-align: center;
+  -webkit-transition: background-color 500ms ease-out 1s;
+  -moz-transition: background-color 500ms ease-out 1s;
+  -o-transition: background-color 500ms ease-out 1s;
+  transition: background-color 500ms ease-out 1s;
+}
+
+.button.save:hover {
+  background: #1d4ed8;
+}
+
+.button.cancel {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.button.cancel:hover {
+  background: #d1d5db;
+}
+
+.table {
+  width: 100%;
+}
+
+TH,
+.tableHeader {
+  font-weight: normal;
+  color: #555;
+  border: none;
+  background-color: #f0f0f0;
+  padding: 2px;
+}
+
+.del-btn-color {
+  background-color: #b61e2d !important;
+}
+
+.add-btn-color {
+  background-color: #004d96 !important;
+}
+
+.teamworkIcon {
+  font-family: "TeamworkRegular" !important;
+  color: #34495e;
+  font-weight: normal;
+  font-size: 120%;
+  font-style: normal !important;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+}
+
+.button.textual,
+.button.buttonImg {
+  border: none;
+  background-color: transparent;
+  color: #68979b;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.modalPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 100;
+}
+
+.modalPopup .bwinPopupd {
+  position: relative;
+  box-shadow: 0 0 0 4px rgba(46, 186, 255, 0.3);
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  background-color: #fff;
+  margin: auto;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.modalPopup .popUpClose {
+  z-index: 9;
+  color: #2f2f2f;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  right: 25px;
+  top: 30px;
+}
+
+/* Popup Modal */
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #f9fafb;
+  border-radius: 5px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.popup-footer {
+  padding: 10px;
+  background-color: #f9fafb;
+  border-radius: 5px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.task-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-icon i {
+  padding: 8px;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: #fff;
+}
+
+h2.taskData {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.form {
+  padding: 10px;
+}
+.three-field,
+.progress-status {
+  display: flex;
+  gap: 10px;
+}
+.name-section,
+.description-section,
+.three-field,
+.progress-status {
+  margin-bottom: 10px;
+}
+.status-part {
+  width: 37%;
+}
+
+/* Platform css */
+
 .TWGanttWorkSpace.ganttFullScreen {
   position: fixed;
   top: 0;
@@ -63,8 +258,8 @@ button:hover {
 .gdfCell {
   overflow: hidden;
   /* padding:4px 2px; */
-  border-bottom: 1px solid #eee;
-  border-right: 1px solid #eee;
+  border-bottom: 2px solid #eee;
+  border-right: 2px solid #eee;
   font-family: arial, helvetica, sans-serif;
 }
 
@@ -237,7 +432,7 @@ button:hover {
   white-space: nowrap;
   width: auto !important;
 }
-taskStatus
+
 /* -------------------------------------- GANTT -----------------------------------*/
 
 .ganttTable {
@@ -256,36 +451,57 @@ taskStatus
 .ganttHead2 {
   height: 23px;
 }
+/* .ganttHead2 {
+  height: 23px;
+} */
 
-.ganttHead1 th {
+/* .ganttHead1 th {
   border-left: 1px solid #b0b0b0;
   padding: 0;
   margin: 0;
-  /*border-right: 1px solid #bbb;*/
   border-bottom: 1px solid #bbb;
   background: #eeeeee;
   white-space: pre-line;
   word-break: break-all;
-}
+} */
 
-.ganttHead1 th,
-.ganttHead2 th {
-  white-space: nowrap;
+.ganttHead1 th {
+  font-weight: 500;
+  font-size: 14px;
+  color: #e8f1ff;
+  /* white-space: nowrap; */
   overflow: hidden;
+  /* background-color: rgb(203 231 245); */
+  background-color: #4786d0;
+  margin: 2px;
 }
 
-.ganttHead2 th {
+/* .ganttHead2 th {
   padding: 0;
   margin: 0;
   border-left: 1px solid #b0b0b0;
-  /*border-right: 1px solid #bbb;*/
   border-bottom: 2px solid #bbb;
   background: #eeeeee;
+} */
+.ganttHead2 th {
+  background: #f9fafb;
+  color: #9ca3af;
+  font-weight: 500;
+  text-align: center;
+  border-right: 1px solid #e6e6e6;
+  border-bottom: 1px solid #ddd;
+  padding: 2px 0px;
+}
+
+.ganttHead2 th:hover {
+  color: #4786d0;
+  background-color: #e8f1ff;
 }
 
 .ganttHead1 th.headSmall,
 .ganttHead2 th.headSmall {
   font-size: 10px;
+  padding: 5px 10px;
 }
 
 .ganttHead1 th.headLeft,
@@ -410,90 +626,16 @@ taskStatus
 }
 
 .ganttHead2 th.holy {
-  background-color: rgba(236, 195, 176, 0.4);
+  padding: 5px 10px;
+  color: #4786d0;
+  background-color: rgba(232, 241, 255, 1);
 }
+
 .ganttBodyCell.holy {
-  background-color: rgba(255, 245, 230, 0.51);
+  background-color: rgba(232, 241, 255, 0.5);
 }
 
 /* -------------------------------------- TASK -----------------------------------*/
-
-.taskBoxDiv {
-  position: absolute;
-  height: 25px;
-  margin-top: 3px;
-  z-index: 100;
-}
-
-.taskBoxDiv .layout {
-  /* height:100%;
-  color:#DB2727;
-  border-radius:2px;
-  background: #eee; 
-  border:1px solid #bbb; */
-
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
-  border: none;
-  border-radius: 6px;
-}
-
-.taskBoxDiv .taskStatus {
-  left: 5px;
-  top: 10px;
-  position: absolute;
-  width: 10px;
-  height: 10px;
-}
-
-.taskBoxDiv .layout .milestone {
-  top: 0;
-  position: absolute;
-  width: 18px;
-  background: url(res/milestone.png) no-repeat;
-  height: 18px;
-  display: none;
-}
-.taskBoxDiv .layout .milestone.end {
-  right: 0;
-}
-.taskBoxDiv .layout .milestone.active {
-  display: block;
-}
-
-.taskBoxDiv.hasChild .layout {
-  border-top: 2px solid black;
-}
-
-.taskBoxDiv .taskProgress {
-  height: 5px;
-  position: absolute;
-  background: #22c55e;
-  height: 6px;
-  border-radius: 4px;
-}
-
-.taskBoxDiv .layout.extDep {
-  background-image: url(res/hasExternalDeps.png);
-}
-
-.taskLabel {
-  position: absolute;
-  height: 28px;
-  color: black;
-  text-align: right;
-  padding-right: 5px;
-  overflow: hidden;
-  left: -200px;
-  width: 195px;
-  white-space: nowrap;
-}
-
-.taskDepLine {
-  border: 1px solid #9999ff;
-  overflow: hidden;
-  position: absolute;
-}
-
 .taskEditRow,
 .emptyRow {
   height: 30px;
@@ -518,13 +660,10 @@ taskStatus
   height: 15px;
 }
 
-.columnWidthTest {
-  width: auto;
-}
-
 .taskEditRow input:focus {
   font-weight: 600;
 }
+
 .taskEditRow input {
   background-color: transparent;
 }
@@ -541,10 +680,6 @@ taskStatus
 .assigEditRow:nth-child(even) {
   background-color: #ffffff;
 }
-
-/* input[readonly]{
-  color: #c0c0c0;
-} */
 
 .taskStatusBox {
   position: absolute;
@@ -601,7 +736,7 @@ taskStatus
   color: #000;
 }
 .taskStatus[status="STATUS_UNDEFINED"] {
-  background-color: #DEDEDF;
+  background-color: #dededf;
   color: #000;
   border-radius: 10px;
   width: 6px;
@@ -841,87 +976,6 @@ select.taskStatus {
   stroke: rgba(255, 0, 0, 0.7);
 }
 
-/*--------------------------------------------------- RESOURCE ADD  --------------------------------------------------*/
-.ganttAddResource {
-  position: absolute;
-  width: 660px;
-  height: 300px;
-  border: 1px solid red;
-  background-color: white;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  top: 120px;
-  left: 70px;
-  z-index: 200;
-  padding: 10px;
-}
-
-.ganttAddResource tr.isCompany {
-  display: none;
-}
-
-.ganttAddResource.isCompany tr.isCompany {
-  display: table-row;
-}
-.ganttAddResource.isCompany tr.isPerson {
-  display: none;
-}
-.ganttAddResourceBG {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 200;
-}
-
-/*---------------------------------#LOG_CHANGES_CONTAINER --------------------------------------------*/
-#LOG_CHANGES_CONTAINER {
-  display: none;
-  width: 300px;
-  top: -130px;
-  margin-left: -35px;
-}
-
-.userProfile {
-  font-size: 16px;
-  vertical-align: middle;
-  text-align: right;
-  margin: 0 5px 0 0;
-  padding: 5px;
-  float: right;
-  position: relative;
-  z-index: 50;
-  line-height: 40px;
-  vertical-align: middle;
-  position: absolute;
-  right: 0;
-}
-
-.userLine {
-  max-width: 150px;
-  display: inline-block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
-}
-
-.avatar {
-  vertical-align: middle;
-  padding: 1px;
-  width: 27px;
-  height: 27px;
-  border: 1px solid #dedede;
-}
-
-.taskEditRow:hover td {
-  background-color: #f4f7fe;
-  transition: 0.2s;
-}
-
 /*--------------------------------------------------- Media queries  --------------------------------------------------*/
 
 /* Large screens */
@@ -1038,6 +1092,6 @@ select.taskStatus {
 .gdfTable td:nth-child(6) {
   width: 10% !important;
 }
-.left-side{
+.left-side {
   align-items: center;
 }
